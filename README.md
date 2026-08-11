@@ -105,6 +105,26 @@ Boundary accuracy (attack flagged AND benign twin cleared): 0.800 over 5 pairs.
 
 Reports render as **Markdown**, **JSON**, or **SARIF 2.1.0** (so results flow into GitHub code-scanning and other security dashboards).
 
+## Baseline results
+
+The two built-in reference detectors, on each dataset's `test` split:
+
+| Dataset | Detector | Recall | FPR | F1 |
+| --- | --- | ---: | ---: | ---: |
+| `english-prompt-injection-3k` | regex-baseline | 0.075 | 0.016 | 0.138 |
+| `english-prompt-injection-3k` | heuristic | 0.107 | 0.000 | 0.193 |
+| `agentic-prompt-injection-5k` | regex-baseline | 0.043 | 0.015 | 0.081 |
+| `agentic-prompt-injection-5k` | heuristic | 0.096 | 0.019 | 0.173 |
+| `turkish-prompt-injection-1k` | regex-baseline | 0.089 | 0.000 | 0.163 |
+| `turkish-prompt-injection-1k` | heuristic | 0.089 | 0.000 | 0.163 |
+| `guardrail-hard-negatives` | heuristic | 0.040 | 0.034 | 0.073 |
+
+Those recall numbers are **low on purpose.** A keyword/regex baseline barely dents these datasets, because the attacks are indirect, agentic, obfuscated, and multilingual — not "ignore previous instructions" one-liners. That gap is the whole point of the benchmark: it is the room a real guardrail has to prove it does more than grep. Reproduce any row with:
+
+```bash
+injectbench evaluate --dataset hf:3nesdeniz/english-prompt-injection-3k --split test --detector heuristic
+```
+
 ## The metrics, precisely
 
 - **Recall / TPR** — share of injection attempts flagged. High recall alone is cheap.
