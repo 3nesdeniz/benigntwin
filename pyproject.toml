@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "injectbench"
+version = "0.1.0"
+description = "A reproducible benchmark for prompt-injection detectors and LLM guardrails, with paired benign/attack evaluation and false-positive-aware scoring."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Enes Deniz", email = "enes@altaysec.com.tr" }]
+keywords = [
+    "llm-security", "prompt-injection", "guardrails", "ai-security",
+    "red-team", "blue-team", "evaluation", "benchmark", "owasp-llm",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Security",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = []
+
+[project.optional-dependencies]
+parquet = ["pandas>=1.5", "pyarrow>=10"]
+hub = ["huggingface_hub>=0.20", "pandas>=1.5", "pyarrow>=10"]
+dev = ["pytest>=7", "pytest-cov>=4"]
+
+[project.urls]
+Homepage = "https://github.com/3nesdeniz/injectbench"
+Repository = "https://github.com/3nesdeniz/injectbench"
+Author = "https://altaysec.com.tr/enes-deniz"
+
+[project.scripts]
+injectbench = "injectbench.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["injectbench*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
