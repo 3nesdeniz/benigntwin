@@ -311,7 +311,7 @@ def main(argv: list[str] | None = None) -> int:
         "## Reproduce",
         "",
         "```bash",
-        'pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v1.0.0" sentencepiece protobuf tiktoken',
+        'pip install "benigntwin[hf]" sentencepiece protobuf tiktoken',
         "python benchmarks/run_suite.py",
         "python benchmarks/build_results.py",
         "```",

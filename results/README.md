@@ -158,7 +158,7 @@ The same items in two languages (a flag on a benign item is a false positive):
 ## Reproduce
 
 ```bash
-pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v1.0.0" sentencepiece protobuf tiktoken
+pip install "benigntwin[hf]" sentencepiece protobuf tiktoken
 python benchmarks/run_suite.py
 python benchmarks/build_results.py
 ```

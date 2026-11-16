@@ -2,6 +2,7 @@
 
 **BenignTwin is an open-source benchmark for prompt-injection detectors and LLM guardrails.** It evaluates every attack next to a *benign twin*, a legitimate request with the same topic and wording, and gives a detector credit only when it flags the attack and lets the twin through. Results come with the false-positive rate, confidence intervals, and a breakdown per attack family and per language.
 
+[![PyPI](https://img.shields.io/pypi/v/benigntwin.svg)](https://pypi.org/project/benigntwin/)
 [![CI](https://github.com/3nesdeniz/benigntwin/actions/workflows/ci.yml/badge.svg)](https://github.com/3nesdeniz/benigntwin/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
@@ -33,7 +34,7 @@ A detector that reacts to wording flags both or neither. BenignTwin scores the p
 ## Install
 
 ```bash
-pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v1.0.0"
+pip install "benigntwin[hf]"
 ```
 
 Leave out `[hf]` if you do not evaluate Hugging Face models; the core needs only Python 3.10 or newer.
