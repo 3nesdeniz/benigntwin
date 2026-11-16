@@ -115,7 +115,7 @@ def dataset_section(
         rows.append(row)
     lines.extend(_table(headers, rows))
     if any(report["suite"].get("trained_on_this_dataset") for report in reports):
-        lines.extend(["", "† The developers of this model list part of this dataset as training data."])
+        lines.extend(["", "† The developers of this model list the train split of this dataset as training data."])
     lines.append("")
 
     # False positives per category, for datasets that tag their benign rows.

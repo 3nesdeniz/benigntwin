@@ -1339,6 +1339,6 @@
     "name": "open-detectors",
     "dataset_key": "boundary-pairs-test",
     "detector_key": "horizon-guard-base",
-    "trained_on_this_dataset": false
+    "trained_on_this_dataset": true
   }
 }

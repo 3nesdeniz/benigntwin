@@ -27,7 +27,7 @@
         "attack_family"
       ],
       "license": "CC-BY-4.0",
-      "note": "All 600 matched pairs, 50 per attack family, for per-family numbers with tighter intervals. Detectors that were trained on the train split of this dataset have seen 420 of these pairs; they are marked in the table."
+      "note": "All 600 matched pairs, 50 per attack family, for per-family numbers with tighter intervals. Detectors whose developers trained on the train split of this dataset have seen 420 of these pairs; they are marked in the table."
     },
     {
       "key": "conversation-tr",
@@ -80,7 +80,8 @@
       "title": "protectai/deberta-v3-base-prompt-injection-v2",
       "spec": "hf:protectai/deberta-v3-base-prompt-injection-v2@90c9989b1a342275dd0d1a95aad283c04e075671",
       "license": "Apache-2.0",
-      "languages": "English only according to its model card"
+      "languages": "English only according to its model card",
+      "note": "Its model card marks the project as archived and lists a copy of XSTest among its training data."
     },
     {
       "key": "deepset-deberta-v3-base",
@@ -129,9 +130,10 @@
       "license": "Apache-2.0",
       "languages": "Trained on synthetic data in 30 languages according to its model card, Turkish included",
       "trained_on": [
+        "boundary-pairs-test",
         "boundary-pairs-all"
       ],
-      "note": "Its model card lists the train split of the boundary-pairs dataset among its training data."
+      "note": "Its model card lists the train split of the boundary-pairs dataset among its training data. The test split uses other scenarios, but it comes from the same source."
     },
     {
       "key": "neuraltrust-guard-small",

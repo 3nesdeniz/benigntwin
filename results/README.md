@@ -27,9 +27,10 @@ Openly available prompt-injection detectors on matched benign/attack pairs in En
 
 - `regex-baseline`: Reference floor: a list of known attack phrases.
 - `heuristic`: Reference floor: weighted keyword signals.
+- `protectai/deberta-v3-base-prompt-injection-v2`: Its model card marks the project as archived and lists a copy of XSTest among its training data.
 - `fmops/distilbert-prompt-injection`: The model does not name its outputs; LABEL_1 is taken as the attack class.
 - `patronus-studio/wolf-defender-prompt-injection`: Its model card reports results on the boundary-pairs dataset and does not say whether that dataset was part of the training data.
-- `Horizon-Labs/prompt-injection-guard-base`: Its model card lists the train split of the boundary-pairs dataset among its training data.
+- `Horizon-Labs/prompt-injection-guard-base`: Its model card lists the train split of the boundary-pairs dataset among its training data. The test split uses other scenarios, but it comes from the same source.
 
 ## Agentic boundary pairs, English, test split
 
@@ -42,7 +43,7 @@ Openly available prompt-injection detectors on matched benign/attack pairs in En
 | Detector | Attacks caught | Benign flagged | Pairs separated | ROC AUC |
 | --- | ---: | ---: | ---: | ---: |
 | `patronus-studio/wolf-defender-prompt-injection` | 98.3% (94.1–99.5%) 118/120 | 0.0% (0.0–3.1%) 0/120 | 98.3% (94.1–99.5%) 118/120 | 1.000 |
-| `Horizon-Labs/prompt-injection-guard-base` | 99.2% (95.4–99.9%) 119/120 | 5.0% (2.3–10.5%) 6/120 | 94.2% (88.4–97.1%) 113/120 | 0.992 |
+| `Horizon-Labs/prompt-injection-guard-base` † | 99.2% (95.4–99.9%) 119/120 | 5.0% (2.3–10.5%) 6/120 | 94.2% (88.4–97.1%) 113/120 | 0.992 |
 | `NeuralTrust/prompt-guard-oss-small` | 80.0% (72.0–86.2%) 96/120 | 11.7% (7.1–18.6%) 14/120 | 69.2% (60.4–76.7%) 83/120 | 0.887 |
 | `protectai/deberta-v3-base-prompt-injection-v2` | 84.2% (76.6–89.6%) 101/120 | 57.5% (48.6–66.0%) 69/120 | 31.7% (24.0–40.4%) 38/120 | 0.720 |
 | `proventra/mdeberta-v3-base-prompt-injection` | 73.3% (64.8–80.4%) 88/120 | 60.0% (51.1–68.3%) 72/120 | 24.2% (17.4–32.6%) 29/120 | 0.643 |
@@ -52,9 +53,11 @@ Openly available prompt-injection detectors on matched benign/attack pairs in En
 | `deepset/deberta-v3-base-injection` | 100.0% (96.9–100.0%) 120/120 | 100.0% (96.9–100.0%) 120/120 | 0.0% (0.0–3.1%) 0/120 | 0.499 |
 | `fmops/distilbert-prompt-injection` | 100.0% (96.9–100.0%) 120/120 | 100.0% (96.9–100.0%) 120/120 | 0.0% (0.0–3.1%) 0/120 | 0.580 |
 
+† The developers of this model list the train split of this dataset as training data.
+
 ## Agentic boundary pairs, English, all splits
 
-All 600 matched pairs, 50 per attack family, for per-family numbers with tighter intervals. Detectors that were trained on the train split of this dataset have seen 420 of these pairs; they are marked in the table.
+All 600 matched pairs, 50 per attack family, for per-family numbers with tighter intervals. Detectors whose developers trained on the train split of this dataset have seen 420 of these pairs; they are marked in the table.
 
 - Source: `hf:3nesdeniz/agentic-prompt-injection-boundary-pairs` at `a5682e7573e1`, split `all`
 - Rows: 1200 (600 attacks, 600 benign), 600 matched pairs
@@ -73,7 +76,7 @@ All 600 matched pairs, 50 per attack family, for per-family numbers with tighter
 | `deepset/deberta-v3-base-injection` | 100.0% (99.4–100.0%) 600/600 | 100.0% (99.4–100.0%) 600/600 | 0.0% (0.0–0.6%) 0/600 | 0.492 |
 | `fmops/distilbert-prompt-injection` | 100.0% (99.4–100.0%) 600/600 | 100.0% (99.4–100.0%) 600/600 | 0.0% (0.0–0.6%) 0/600 | 0.588 |
 
-† The developers of this model list part of this dataset as training data.
+† The developers of this model list the train split of this dataset as training data.
 
 ## Conversation prompt injection, Turkish, all splits
 
