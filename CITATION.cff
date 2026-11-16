@@ -10,6 +10,7 @@ authors:
 version: "1.0.3"
 date-released: "2026-11-16"
 license: Apache-2.0
+doi: 10.5281/zenodo.24287037
 repository-code: "https://github.com/3nesdeniz/benigntwin"
 abstract: >-
   BenignTwin evaluates prompt-injection detectors and LLM guardrails on matched

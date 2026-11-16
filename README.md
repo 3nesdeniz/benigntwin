@@ -3,6 +3,7 @@
 **BenignTwin is an open-source benchmark for prompt-injection detectors and LLM guardrails.** It evaluates every attack next to a *benign twin*, a legitimate request with the same topic and wording, and gives a detector credit only when it flags the attack and lets the twin through. Results come with the false-positive rate, confidence intervals, and a breakdown per attack family and per language.
 
 [![PyPI](https://img.shields.io/pypi/v/benigntwin.svg)](https://pypi.org/project/benigntwin/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24287037.svg)](https://doi.org/10.5281/zenodo.24287037)
 [![CI](https://github.com/3nesdeniz/benigntwin/actions/workflows/ci.yml/badge.svg)](https://github.com/3nesdeniz/benigntwin/actions/workflows/ci.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
@@ -184,6 +185,7 @@ Use **Cite this repository** on GitHub, or:
   title   = {BenignTwin: benchmarking prompt-injection detectors on matched benign/attack pairs},
   year    = {2026},
   version = {1.0.3},
+  doi     = {10.5281/zenodo.24287037},
   url     = {https://github.com/3nesdeniz/benigntwin}
 }
 ```
