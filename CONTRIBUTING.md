@@ -1,30 +1,46 @@
-# Contributing to InjectBench
+# Contributing
 
-Thanks for your interest. InjectBench aims to stay small, correct, and dependency-light.
+Bug reports, corrections to the documentation and new adapters are welcome.
 
-## Ways to contribute
-
-- **New detectors.** Implement a `Detector` (see `injectbench/detectors/base.py`), register it, and add tests. Adapters for real guardrails (Llama Guard, promptfoo, garak probes) are especially welcome.
-- **New metrics or report formats.** Keep `metrics.py` pure and fully unit-tested.
-- **Dataset loaders.** Any source that normalizes to the `Example` schema.
-- **Bug reports** with a minimal reproducing input.
-
-## Development
+## Setup
 
 ```bash
-pip install -e ".[dev,hub]"
-pytest -q
+git clone https://github.com/3nesdeniz/injectbench
+cd injectbench
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
 ```
 
-## Guidelines
+## Before you open a pull request
 
-- Core (`metrics`, `evaluate`, `detectors.base`) must have **no runtime dependencies**.
-- Every new public function ships with a test.
-- Run `pytest` before opening a PR; CI runs on Python 3.9–3.12.
-- Keep detectors honest: a detector that inflates recall by flagging everything must visibly lose on false-positive rate and paired boundary accuracy — that's the point of the benchmark.
+```bash
+ruff check .          # lint
+ruff format --check . # formatting
+mypy                  # types (strict)
+pytest                # tests
+```
 
-## Good first issues
+All four run in CI on Python 3.10 to 3.14.
 
-- Add a threshold-sweep report using `Detector.score()`.
-- Add a `--per-family-table` option to the CLI.
-- Contribute hard-negative examples in a new language.
+## Ground rules
+
+- **The core stays dependency-free.** Loading data, metrics and reports use the standard library only. Anything that needs a package belongs behind an optional extra.
+- **Never guess.** An unknown label, a missing language or a rate with a zero denominator must not be turned into a plausible-looking value.
+- **Detectors see the text and nothing else.** No change may pass labels or metadata to a system under test.
+- **Reports contain no input text.**
+- **Every behaviour has a test.** Metrics are tested against values worked out by hand.
+- **Claims about other projects need a source.** `docs/related-work.md` links each one; check the link when you change a row.
+
+## Good first contributions
+
+- An adapter for a guardrail API, as a documented example under `examples/`.
+- A matched-pair dataset in a language that has none, with a native speaker's review.
+- A worked CI example for a platform other than GitHub Actions.
+
+## Reporting a problem with a published result
+
+Open an issue with the detector, the dataset revision and what you measured. Results are regenerated from `benchmarks/suite.json`; a correction means a new run, not an edit of the tables.
+
+## Security
+
+See [SECURITY.md](SECURITY.md). Please do not report vulnerabilities in public issues.

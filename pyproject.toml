@@ -1,49 +1,120 @@
 [build-system]
-requires = ["setuptools>=64", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
 
 [project]
 name = "injectbench"
-version = "0.1.0"
-description = "A reproducible benchmark for prompt-injection detectors and LLM guardrails, with paired benign/attack evaluation and false-positive-aware scoring."
+dynamic = ["version"]
+description = "Benchmark prompt-injection detectors and LLM guardrails on matched benign/attack pairs: attack recall, false-positive rate and pair accuracy, per attack family and per language."
 readme = "README.md"
-requires-python = ">=3.9"
-license = { text = "Apache-2.0" }
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [{ name = "Enes Deniz", email = "enes@altaysec.com.tr" }]
 keywords = [
-    "llm-security", "prompt-injection", "guardrails", "ai-security",
-    "red-team", "blue-team", "evaluation", "benchmark", "owasp-llm",
+    "prompt-injection",
+    "llm-security",
+    "guardrails",
+    "ai-security",
+    "benchmark",
+    "evaluation",
+    "false-positive-rate",
+    "hard-negatives",
+    "jailbreak-detection",
+    "multilingual",
+    "red-team",
+    "blue-team",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
+    "Environment :: Console",
     "Intended Audience :: Developers",
-    "Topic :: Security",
-    "License :: OSI Approved :: Apache Software License",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Security",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
 ]
 dependencies = []
 
 [project.optional-dependencies]
-parquet = ["pandas>=1.5", "pyarrow>=10"]
-hub = ["huggingface_hub>=0.20", "pandas>=1.5", "pyarrow>=10"]
-dev = ["pytest>=7", "pytest-cov>=4"]
+parquet = ["pyarrow>=14"]
+hf = ["transformers>=4.40", "torch>=2.2"]
+# "hub" was an extra in 0.1.0. Hub datasets now load with the standard library;
+# the name is kept so existing install commands keep working.
+hub = ["pyarrow>=14"]
+dev = ["pytest>=8", "ruff>=0.8", "mypy>=1.11", "pyarrow>=14"]
 
 [project.urls]
 Homepage = "https://github.com/3nesdeniz/injectbench"
+Documentation = "https://github.com/3nesdeniz/injectbench/tree/main/docs"
 Repository = "https://github.com/3nesdeniz/injectbench"
-Author = "https://altaysec.com.tr/enes-deniz"
+Issues = "https://github.com/3nesdeniz/injectbench/issues"
+Changelog = "https://github.com/3nesdeniz/injectbench/blob/main/CHANGELOG.md"
 
 [project.scripts]
 injectbench = "injectbench.cli:main"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["injectbench*"]
+[tool.hatch.version]
+path = "src/injectbench/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/injectbench"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+    "/examples",
+    "/docs",
+    "/README.md",
+    "/LICENSE",
+    "/CHANGELOG.md",
+    "/CITATION.cff",
+    "/SECURITY.md",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q"
+pythonpath = ["src", "tests"]
+addopts = "-q --strict-markers"
+filterwarnings = ["error"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+src = ["src", "tests"]
+extend-exclude = ["*.md"]  # code blocks in the docs are illustrative
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "BLE", "UP", "S", "SIM", "C4", "PT", "RUF"]
+ignore = [
+    "E501",   # long lines are left to the formatter
+    "S101",   # assert is used for narrowing and in tests
+    "PT011",  # pytest.raises without match is fine for simple cases
+    "PT018",  # compound assertions keep related checks on one line
+]
+# Turkish text (dotless i) and en dashes in ranges are intentional.
+allowed-confusables = ["ı", "–"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B017", "BLE"]
+
+[tool.mypy]
+files = ["src"]
+python_version = "3.10"
+strict = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["pyarrow.*", "transformers.*", "torch.*"]
+ignore_missing_imports = true
