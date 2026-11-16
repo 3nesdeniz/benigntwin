@@ -287,6 +287,12 @@ def main(argv: list[str] | None = None) -> int:
         "",
         *_table(["Detector", "Commit", "Licence", "Languages"], detector_rows, text=True),
         "",
+        *[
+            f"- `{titles[entry['key']]}`: {entry['note']}"
+            for entry in suite["detectors"]
+            if entry["key"] in detectors_used and entry.get("note")
+        ],
+        "",
         *sections,
         "## Limits",
         "",
@@ -305,7 +311,7 @@ def main(argv: list[str] | None = None) -> int:
         "## Reproduce",
         "",
         "```bash",
-        'pip install "benigntwin[hf]"',
+        'pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v1.0.0" sentencepiece protobuf tiktoken',
         "python benchmarks/run_suite.py",
         "python benchmarks/build_results.py",
         "```",

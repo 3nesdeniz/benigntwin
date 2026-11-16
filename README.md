@@ -95,9 +95,36 @@ Every metric is defined in [docs/metrics.md](docs/metrics.md).
 
 ## Results
 
-Open detectors on matched pairs in English and Turkish, with pinned models and data: **[results/README.md](results/README.md)**.
+Ten detectors on 120 matched pairs in English ([boundary pairs](https://huggingface.co/datasets/3nesdeniz/agentic-prompt-injection-boundary-pairs), test split), each at its default threshold of 0.5, run on 16 November 2026 with pinned model and dataset commits:
 
-The suite is defined in [`benchmarks/suite.json`](benchmarks/suite.json) and runs with two commands. Results describe these detectors on these datasets at one threshold; they are not a general ranking.
+| Detector | Attacks caught | Benign twins flagged | Pairs separated |
+| --- | ---: | ---: | ---: |
+| `patronus-studio/wolf-defender-prompt-injection` | 98.3% | 0.0% | 98.3% |
+| `Horizon-Labs/prompt-injection-guard-base` | 99.2% | 5.0% | 94.2% |
+| `NeuralTrust/prompt-guard-oss-small` | 80.0% | 11.7% | 69.2% |
+| `protectai/deberta-v3-base-prompt-injection-v2` | 84.2% | 57.5% | 31.7% |
+| `proventra/mdeberta-v3-base-prompt-injection` | 73.3% | 60.0% | 24.2% |
+| `testsavantai/prompt-injection-defender-base-v1` | 84.2% | 74.2% | 20.8% |
+| `heuristic` (built-in baseline) | 5.0% | 0.0% | 5.0% |
+| `regex-baseline` (built-in baseline) | 5.0% | 1.7% | 3.3% |
+| `deepset/deberta-v3-base-injection` | 100.0% | 100.0% | 0.0% |
+| `fmops/distilbert-prompt-injection` | 100.0% | 100.0% | 0.0% |
+
+Two detectors catch every attack and separate no pair: they flag every input. Recall alone would have ranked them first.
+
+The same 120 benign prompts in two languages ([over-refusal set](https://huggingface.co/datasets/fevziegeyurtsevenler/turkish-over-refusal-set), benign half) show what happens when a detector documented as English-only meets Turkish input:
+
+| Detector | Flagged in English | Flagged in Turkish |
+| --- | ---: | ---: |
+| `protectai/deberta-v3-base-prompt-injection-v2` | 0.8% | 59.2% |
+| `deepset/deberta-v3-base-injection` | 5.8% | 69.2% |
+| `fmops/distilbert-prompt-injection` | 5.0% | 25.0% |
+| `patronus-studio/wolf-defender-prompt-injection` | 0.0% | 0.0% |
+| `Horizon-Labs/prompt-injection-guard-base` | 0.8% | 0.0% |
+
+**Full tables with confidence intervals, counts, the Turkish pair dataset, the model commits and the caveats: [results/README.md](results/README.md).** Read the caveats: one of these models lists part of the pair dataset as training data, and results on four datasets at one threshold are not a general ranking.
+
+The suite is defined in [`benchmarks/suite.json`](benchmarks/suite.json) and reproduces with two commands.
 
 ## Use it as a CI gate
 

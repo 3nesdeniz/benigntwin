@@ -11,7 +11,9 @@
       "source": "hf:3nesdeniz/agentic-prompt-injection-boundary-pairs",
       "revision": "a5682e7573e1c7bc4b12e64d49c0dcd90ca776cf",
       "split": "test",
-      "slice_by": ["attack_family"],
+      "slice_by": [
+        "attack_family"
+      ],
       "license": "CC-BY-4.0",
       "note": "120 matched pairs from enterprise and agent workflows, 10 per attack family. The benign twin shares the asset, role, tool and topic of its attack. The test split uses scenarios that do not occur in the train split."
     },
@@ -21,7 +23,9 @@
       "source": "hf:3nesdeniz/agentic-prompt-injection-boundary-pairs",
       "revision": "a5682e7573e1c7bc4b12e64d49c0dcd90ca776cf",
       "split": "all",
-      "slice_by": ["attack_family"],
+      "slice_by": [
+        "attack_family"
+      ],
       "license": "CC-BY-4.0",
       "note": "All 600 matched pairs, 50 per attack family, for per-family numbers with tighter intervals. Detectors that were trained on the train split of this dataset have seen 420 of these pairs; they are marked in the table."
     },
@@ -32,7 +36,10 @@
       "revision": "29d7593984f563c4ad56876aa800b9ffd948a2fb",
       "split": "all",
       "default_language": "tr",
-      "slice_by": ["category", "attack_family"],
+      "slice_by": [
+        "category",
+        "attack_family"
+      ],
       "license": "CC-BY-4.0",
       "note": "150 matched pairs plus 450 ordinary benign messages, all in Turkish. The category slice separates ordinary benign messages from benign twins."
     },
@@ -42,8 +49,13 @@
       "source": "hf:fevziegeyurtsevenler/turkish-over-refusal-set",
       "revision": "305625a4cc25d0ff0d15de7ef2fe30915d196f00",
       "hf_file": "turkish_over_refusal.jsonl",
-      "where": {"type": "safe"},
-      "slice_by": ["language", "category"],
+      "where": {
+        "type": "safe"
+      },
+      "slice_by": [
+        "language",
+        "category"
+      ],
       "license": "Apache-2.0",
       "note": "120 benign prompts, each in Turkish and in English, so the two languages can be compared on the same items. Only the benign half of the set is used: its other half consists of harmful requests, which are not prompt injections, so an injection detector is not expected to flag them."
     }
@@ -81,7 +93,9 @@
       "key": "fmops-distilbert",
       "title": "fmops/distilbert-prompt-injection",
       "spec": "hf:fmops/distilbert-prompt-injection@c5da1fefd33c98c447b50dd806fe86aeb9e8c26c",
-      "positive_labels": ["LABEL_1"],
+      "positive_labels": [
+        "LABEL_1"
+      ],
       "license": "Apache-2.0",
       "languages": "English, German and Spanish according to its metadata",
       "note": "The model does not name its outputs; LABEL_1 is taken as the attack class."
@@ -105,7 +119,8 @@
       "title": "patronus-studio/wolf-defender-prompt-injection",
       "spec": "hf:patronus-studio/wolf-defender-prompt-injection@af0b16a1d40ca246595e48246ccf9f906a52a50e",
       "license": "Apache-2.0",
-      "languages": "English and German are the primary evaluated languages according to its model card; multilingual base model"
+      "languages": "English and German are the primary evaluated languages according to its model card; multilingual base model",
+      "note": "Its model card reports results on the boundary-pairs dataset and does not say whether that dataset was part of the training data."
     },
     {
       "key": "horizon-guard-base",
@@ -113,7 +128,9 @@
       "spec": "hf:Horizon-Labs/prompt-injection-guard-base@fc071c5754f8cf2edce9dc1d7fd3513ef9287007",
       "license": "Apache-2.0",
       "languages": "Trained on synthetic data in 30 languages according to its model card, Turkish included",
-      "trained_on": ["boundary-pairs-all"],
+      "trained_on": [
+        "boundary-pairs-all"
+      ],
       "note": "Its model card lists the train split of the boundary-pairs dataset among its training data."
     },
     {
