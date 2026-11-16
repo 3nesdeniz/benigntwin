@@ -388,6 +388,9 @@ def _resolve_hub_revision(repo_id: str, revision: str) -> str | None:
     )
     try:
         payload = json.loads(_http_get(url, timeout=30.0))
+    except urllib.error.HTTPError as exc:
+        exc.close()
+        return None
     except (urllib.error.URLError, TimeoutError, ValueError, OSError):
         return None
     sha = payload.get("sha") if isinstance(payload, dict) else None
@@ -422,6 +425,7 @@ def _fetch_hub_file(
     try:
         content = _http_get(url)
     except urllib.error.HTTPError as exc:
+        exc.close()  # the error object holds the response body
         if exc.code in (401, 403):
             raise DatasetError(
                 f"{repo_id}: access denied (HTTP {exc.code}); set HF_TOKEN for gated or private datasets"

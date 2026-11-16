@@ -120,6 +120,7 @@ class HttpDetector(Detector):
                 with urllib.request.urlopen(request, timeout=self.timeout) as response:  # noqa: S310
                     payload = json.loads(response.read().decode("utf-8"))
             except urllib.error.HTTPError as exc:
+                exc.close()  # the error object holds the response body
                 last_error = f"HTTP {exc.code}"
                 if exc.code not in _RETRY_STATUS:
                     break
