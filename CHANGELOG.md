@@ -2,7 +2,7 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the versions follow [semantic versioning](https://semver.org/).
 
-## [1.0.0] - unreleased
+## [1.0.0] - 2026-11-16
 
 **The project is renamed from InjectBench to BenignTwin** (package, import name and command: `benigntwin`). This release also rebuilds the tool and merges in [llm-security-testbench](https://github.com/3nesdeniz/llm-security-testbench), which did the same job. See [docs/migration.md](docs/migration.md) if you used either.
 
