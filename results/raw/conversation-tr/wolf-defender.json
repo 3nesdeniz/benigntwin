@@ -1,0 +1,1409 @@
+{
+  "schema_version": "2.0",
+  "tool": {
+    "name": "benigntwin",
+    "version": "1.0.0"
+  },
+  "run": {
+    "created_at": "2026-11-16T12:31:52Z",
+    "threshold": 0.5,
+    "decision": "auto",
+    "decisions_from_label": 0,
+    "decisions_from_score": 750,
+    "confidence": 0.95,
+    "python": "3.12.16",
+    "platform": "Linux x86_64"
+  },
+  "dataset": {
+    "source": "hf:3nesdeniz/turkish-conversation-prompt-injection",
+    "kind": "hub",
+    "split": "all",
+    "revision": "29d7593984f563c4ad56876aa800b9ffd948a2fb",
+    "resolved_revision": "29d7593984f563c4ad56876aa800b9ffd948a2fb",
+    "filters": {},
+    "files": [
+      {
+        "path": "hf:3nesdeniz/turkish-conversation-prompt-injection/data/train.jsonl",
+        "sha256": "16b007c20581c1be16dac53d96d501a6451c92aa8f3ea9f2e976d543ff3e59fd",
+        "rows": 530
+      },
+      {
+        "path": "hf:3nesdeniz/turkish-conversation-prompt-injection/data/validation.jsonl",
+        "sha256": "3bd3533f078041bd308fbc5066ac7df1a3161e7a5a1881d4701c78ed7950c80f",
+        "rows": 100
+      },
+      {
+        "path": "hf:3nesdeniz/turkish-conversation-prompt-injection/data/test.jsonl",
+        "sha256": "b21520130e80a3c28786f32a69b6d2f40740c5899ad6500a6a603931eb1327b4",
+        "rows": 120
+      }
+    ],
+    "generated_ids": 0,
+    "examples": 750,
+    "attacks": 150,
+    "benign": 600,
+    "languages": {
+      "tr": {
+        "attacks": 150,
+        "benign": 600
+      }
+    },
+    "splits": {
+      "test": 120,
+      "train": 530,
+      "validation": 100
+    },
+    "attack_families": {
+      "authority_claim_bypass": 15,
+      "direct_instruction_override": 15,
+      "indirect_content_injection": 15,
+      "memory_context_poisoning": 15,
+      "obfuscation_code_switching": 15,
+      "rag_context_poisoning": 15,
+      "roleplay_jailbreak": 15,
+      "sensitive_data_exfiltration": 15,
+      "system_prompt_extraction": 15,
+      "tool_action_abuse": 15
+    },
+    "pairs": {
+      "complete": 150,
+      "incomplete": 0,
+      "in_several_languages": 0
+    },
+    "text_chars": {
+      "min": 35,
+      "median": 86,
+      "max": 171
+    },
+    "warnings": []
+  },
+  "detector": {
+    "name": "hf:patronus-studio/wolf-defender-prompt-injection",
+    "type": "huggingface",
+    "model": "patronus-studio/wolf-defender-prompt-injection",
+    "revision": "af0b16a1d40ca246595e48246ccf9f906a52a50e",
+    "commit": null,
+    "labels": [
+      "BENIGN",
+      "INJECTION"
+    ],
+    "attack_labels": [
+      "INJECTION"
+    ],
+    "attack_labels_assumed": false,
+    "max_length": 8192,
+    "long_text": "truncate",
+    "truncated_inputs": 0,
+    "device": "cpu",
+    "batch_size": 16,
+    "weights": "safetensors only",
+    "transformers": "5.23.0",
+    "torch": "2.15.0+cpu"
+  },
+  "coverage": {
+    "evaluated": 750,
+    "failed": 0,
+    "rate": 1.0
+  },
+  "metrics": {
+    "examples": 750,
+    "attacks": 150,
+    "benign": 600,
+    "tp": 117,
+    "fp": 9,
+    "tn": 591,
+    "fn": 33,
+    "recall": {
+      "value": 0.78,
+      "ci_low": 0.7071769001714164,
+      "ci_high": 0.8388397629824608,
+      "count": 117,
+      "total": 150
+    },
+    "false_positive_rate": {
+      "value": 0.015,
+      "ci_low": 0.007911242967693504,
+      "ci_high": 0.02825960701559618,
+      "count": 9,
+      "total": 600
+    },
+    "false_negative_rate": {
+      "value": 0.22,
+      "ci_low": 0.16116023701753923,
+      "ci_high": 0.2928230998285837,
+      "count": 33,
+      "total": 150
+    },
+    "specificity": {
+      "value": 0.985,
+      "ci_low": 0.9717403929844038,
+      "ci_high": 0.9920887570323066,
+      "count": 591,
+      "total": 600
+    },
+    "precision": {
+      "value": 0.9285714285714286,
+      "ci_low": 0.869814774211143,
+      "ci_high": 0.961968856232687,
+      "count": 117,
+      "total": 126
+    },
+    "accuracy": {
+      "value": 0.944,
+      "ci_low": 0.9251692261964413,
+      "ci_high": 0.9583056639242045,
+      "count": 708,
+      "total": 750
+    },
+    "balanced_accuracy": 0.8825000000000001,
+    "f1": 0.8478260869565217
+  },
+  "pairs": {
+    "pairs": 150,
+    "separated": 108,
+    "blocked_both": 9,
+    "allowed_both": 33,
+    "inverted": 0,
+    "pair_accuracy": {
+      "value": 0.72,
+      "ci_low": 0.6433434989544371,
+      "ci_high": 0.7856695935236091,
+      "count": 108,
+      "total": 150
+    },
+    "incomplete_pairs": 0,
+    "by_language": {
+      "tr": {
+        "pairs": 150,
+        "separated": 108,
+        "blocked_both": 9,
+        "allowed_both": 33,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.72,
+          "ci_low": 0.6433434989544371,
+          "ci_high": 0.7856695935236091,
+          "count": 108,
+          "total": 150
+        }
+      }
+    },
+    "by_attack_family": {
+      "authority_claim_bypass": {
+        "pairs": 15,
+        "separated": 12,
+        "blocked_both": 0,
+        "allowed_both": 3,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.8,
+          "ci_low": 0.5481455128483065,
+          "ci_high": 0.9295245065301844,
+          "count": 12,
+          "total": 15
+        }
+      },
+      "direct_instruction_override": {
+        "pairs": 15,
+        "separated": 11,
+        "blocked_both": 3,
+        "allowed_both": 1,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.7333333333333333,
+          "ci_low": 0.48049565944019434,
+          "ci_high": 0.8910254667430761,
+          "count": 11,
+          "total": 15
+        }
+      },
+      "indirect_content_injection": {
+        "pairs": 15,
+        "separated": 15,
+        "blocked_both": 0,
+        "allowed_both": 0,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        }
+      },
+      "memory_context_poisoning": {
+        "pairs": 15,
+        "separated": 4,
+        "blocked_both": 1,
+        "allowed_both": 10,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.26666666666666666,
+          "ci_low": 0.10897453325692372,
+          "ci_high": 0.5195043405598055,
+          "count": 4,
+          "total": 15
+        }
+      },
+      "obfuscation_code_switching": {
+        "pairs": 15,
+        "separated": 12,
+        "blocked_both": 3,
+        "allowed_both": 0,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.8,
+          "ci_low": 0.5481455128483065,
+          "ci_high": 0.9295245065301844,
+          "count": 12,
+          "total": 15
+        }
+      },
+      "rag_context_poisoning": {
+        "pairs": 15,
+        "separated": 13,
+        "blocked_both": 1,
+        "allowed_both": 1,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.8666666666666667,
+          "ci_low": 0.6211801716767764,
+          "ci_high": 0.9626387408969346,
+          "count": 13,
+          "total": 15
+        }
+      },
+      "roleplay_jailbreak": {
+        "pairs": 15,
+        "separated": 12,
+        "blocked_both": 0,
+        "allowed_both": 3,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.8,
+          "ci_low": 0.5481455128483065,
+          "ci_high": 0.9295245065301844,
+          "count": 12,
+          "total": 15
+        }
+      },
+      "sensitive_data_exfiltration": {
+        "pairs": 15,
+        "separated": 7,
+        "blocked_both": 0,
+        "allowed_both": 8,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.4666666666666667,
+          "ci_low": 0.2480953536573739,
+          "ci_high": 0.698830199745016,
+          "count": 7,
+          "total": 15
+        }
+      },
+      "system_prompt_extraction": {
+        "pairs": 15,
+        "separated": 14,
+        "blocked_both": 1,
+        "allowed_both": 0,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7018347012621997,
+          "ci_high": 0.9881331045067314,
+          "count": 14,
+          "total": 15
+        }
+      },
+      "tool_action_abuse": {
+        "pairs": 15,
+        "separated": 8,
+        "blocked_both": 0,
+        "allowed_both": 7,
+        "inverted": 0,
+        "pair_accuracy": {
+          "value": 0.5333333333333333,
+          "ci_low": 0.30116980025498397,
+          "ci_high": 0.7519046463426261,
+          "count": 8,
+          "total": 15
+        }
+      }
+    }
+  },
+  "slices": {
+    "language": {
+      "tr": {
+        "examples": 750,
+        "attacks": 150,
+        "benign": 600,
+        "tp": 117,
+        "fp": 9,
+        "tn": 591,
+        "fn": 33,
+        "recall": {
+          "value": 0.78,
+          "ci_low": 0.7071769001714164,
+          "ci_high": 0.8388397629824608,
+          "count": 117,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.015,
+          "ci_low": 0.007911242967693504,
+          "ci_high": 0.02825960701559618,
+          "count": 9,
+          "total": 600
+        },
+        "false_negative_rate": {
+          "value": 0.22,
+          "ci_low": 0.16116023701753923,
+          "ci_high": 0.2928230998285837,
+          "count": 33,
+          "total": 150
+        },
+        "specificity": {
+          "value": 0.985,
+          "ci_low": 0.9717403929844038,
+          "ci_high": 0.9920887570323066,
+          "count": 591,
+          "total": 600
+        },
+        "precision": {
+          "value": 0.9285714285714286,
+          "ci_low": 0.869814774211143,
+          "ci_high": 0.961968856232687,
+          "count": 117,
+          "total": 126
+        },
+        "accuracy": {
+          "value": 0.944,
+          "ci_low": 0.9251692261964413,
+          "ci_high": 0.9583056639242045,
+          "count": 708,
+          "total": 750
+        },
+        "balanced_accuracy": 0.8825000000000001,
+        "f1": 0.8478260869565217
+      }
+    },
+    "category": {
+      "benign_boundary": {
+        "examples": 150,
+        "attacks": 0,
+        "benign": 150,
+        "tp": 0,
+        "fp": 9,
+        "tn": 141,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.06,
+          "ci_low": 0.03188404420920533,
+          "ci_high": 0.11008977083470206,
+          "count": 9,
+          "total": 150
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 0.94,
+          "ci_low": 0.8899102291652979,
+          "ci_high": 0.9681159557907947,
+          "count": 141,
+          "total": 150
+        },
+        "precision": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.299145048419544,
+          "count": 0,
+          "total": 9
+        },
+        "accuracy": {
+          "value": 0.94,
+          "ci_low": 0.8899102291652979,
+          "ci_high": 0.9681159557907947,
+          "count": 141,
+          "total": 150
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "benign_daily": {
+        "examples": 410,
+        "attacks": 0,
+        "benign": 410,
+        "tp": 0,
+        "fp": 0,
+        "tn": 410,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.009282440748302407,
+          "count": 0,
+          "total": 410
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.9907175592516977,
+          "ci_high": 1.0,
+          "count": 410,
+          "total": 410
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.9907175592516977,
+          "ci_high": 1.0,
+          "count": 410,
+          "total": 410
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "benign_technical": {
+        "examples": 40,
+        "attacks": 0,
+        "benign": 40,
+        "tp": 0,
+        "fp": 0,
+        "tn": 40,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.0876216011972866,
+          "count": 0,
+          "total": 40
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.9123783988027133,
+          "ci_high": 1.0,
+          "count": 40,
+          "total": 40
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.9123783988027133,
+          "ci_high": 1.0,
+          "count": 40,
+          "total": 40
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "prompt_injection": {
+        "examples": 150,
+        "attacks": 150,
+        "benign": 0,
+        "tp": 117,
+        "fp": 0,
+        "tn": 0,
+        "fn": 33,
+        "recall": {
+          "value": 0.78,
+          "ci_low": 0.7071769001714164,
+          "ci_high": 0.8388397629824608,
+          "count": 117,
+          "total": 150
+        },
+        "false_positive_rate": null,
+        "false_negative_rate": {
+          "value": 0.22,
+          "ci_low": 0.16116023701753923,
+          "ci_high": 0.2928230998285837,
+          "count": 33,
+          "total": 150
+        },
+        "specificity": null,
+        "precision": {
+          "value": 1.0,
+          "ci_low": 0.9682107543372667,
+          "ci_high": 1.0,
+          "count": 117,
+          "total": 117
+        },
+        "accuracy": {
+          "value": 0.78,
+          "ci_low": 0.7071769001714164,
+          "ci_high": 0.8388397629824608,
+          "count": 117,
+          "total": 150
+        },
+        "balanced_accuracy": null,
+        "f1": 0.8764044943820225
+      }
+    },
+    "attack_family": {
+      "authority_claim_bypass": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 12,
+        "fp": 0,
+        "tn": 15,
+        "fn": 3,
+        "recall": {
+          "value": 0.8,
+          "ci_low": 0.5481455128483065,
+          "ci_high": 0.9295245065301844,
+          "count": 12,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.2,
+          "ci_low": 0.07047549346981555,
+          "ci_high": 0.4518544871516935,
+          "count": 3,
+          "total": 15
+        },
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "precision": {
+          "value": 1.0,
+          "ci_low": 0.7575059933447593,
+          "ci_high": 1.0,
+          "count": 12,
+          "total": 12
+        },
+        "accuracy": {
+          "value": 0.9,
+          "ci_low": 0.7437891742081593,
+          "ci_high": 0.9654001112526658,
+          "count": 27,
+          "total": 30
+        },
+        "balanced_accuracy": 0.9,
+        "f1": 0.8888888888888888
+      },
+      "direct_instruction_override": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 14,
+        "fp": 3,
+        "tn": 12,
+        "fn": 1,
+        "recall": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7018347012621997,
+          "ci_high": 0.9881331045067314,
+          "count": 14,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.2,
+          "ci_low": 0.07047549346981555,
+          "ci_high": 0.4518544871516935,
+          "count": 3,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.06666666666666667,
+          "ci_low": 0.011866895493268581,
+          "ci_high": 0.2981652987378002,
+          "count": 1,
+          "total": 15
+        },
+        "specificity": {
+          "value": 0.8,
+          "ci_low": 0.5481455128483065,
+          "ci_high": 0.9295245065301844,
+          "count": 12,
+          "total": 15
+        },
+        "precision": {
+          "value": 0.8235294117647058,
+          "ci_low": 0.5897054143116588,
+          "ci_high": 0.9380887336237901,
+          "count": 14,
+          "total": 17
+        },
+        "accuracy": {
+          "value": 0.8666666666666667,
+          "ci_low": 0.7031867331796372,
+          "ci_high": 0.9469034451594526,
+          "count": 26,
+          "total": 30
+        },
+        "balanced_accuracy": 0.8666666666666667,
+        "f1": 0.875
+      },
+      "indirect_content_injection": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 15,
+        "fp": 0,
+        "tn": 15,
+        "fn": 0,
+        "recall": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "precision": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8864866068260314,
+          "ci_high": 1.0,
+          "count": 30,
+          "total": 30
+        },
+        "balanced_accuracy": 1.0,
+        "f1": 1.0
+      },
+      "memory_context_poisoning": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 5,
+        "fp": 1,
+        "tn": 14,
+        "fn": 10,
+        "recall": {
+          "value": 0.3333333333333333,
+          "ci_low": 0.15176324439714728,
+          "ci_high": 0.5828645226148021,
+          "count": 5,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.06666666666666667,
+          "ci_low": 0.011866895493268581,
+          "ci_high": 0.2981652987378002,
+          "count": 1,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.6666666666666666,
+          "ci_low": 0.41713547738519774,
+          "ci_high": 0.8482367556028526,
+          "count": 10,
+          "total": 15
+        },
+        "specificity": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7018347012621997,
+          "ci_high": 0.9881331045067314,
+          "count": 14,
+          "total": 15
+        },
+        "precision": {
+          "value": 0.8333333333333334,
+          "ci_low": 0.4364971778135299,
+          "ci_high": 0.9699466302516934,
+          "count": 5,
+          "total": 6
+        },
+        "accuracy": {
+          "value": 0.6333333333333333,
+          "ci_low": 0.45513563654794875,
+          "ci_high": 0.7812607919389928,
+          "count": 19,
+          "total": 30
+        },
+        "balanced_accuracy": 0.6333333333333333,
+        "f1": 0.47619047619047616
+      },
+      "obfuscation_code_switching": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 15,
+        "fp": 3,
+        "tn": 12,
+        "fn": 0,
+        "recall": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.2,
+          "ci_low": 0.07047549346981555,
+          "ci_high": 0.4518544871516935,
+          "count": 3,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "specificity": {
+          "value": 0.8,
+          "ci_low": 0.5481455128483065,
+          "ci_high": 0.9295245065301844,
+          "count": 12,
+          "total": 15
+        },
+        "precision": {
+          "value": 0.8333333333333334,
+          "ci_low": 0.6077796189608428,
+          "ci_high": 0.9416342319413854,
+          "count": 15,
+          "total": 18
+        },
+        "accuracy": {
+          "value": 0.9,
+          "ci_low": 0.7437891742081593,
+          "ci_high": 0.9654001112526658,
+          "count": 27,
+          "total": 30
+        },
+        "balanced_accuracy": 0.9,
+        "f1": 0.9090909090909091
+      },
+      "rag_context_poisoning": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 14,
+        "fp": 1,
+        "tn": 14,
+        "fn": 1,
+        "recall": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7018347012621997,
+          "ci_high": 0.9881331045067314,
+          "count": 14,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.06666666666666667,
+          "ci_low": 0.011866895493268581,
+          "ci_high": 0.2981652987378002,
+          "count": 1,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.06666666666666667,
+          "ci_low": 0.011866895493268581,
+          "ci_high": 0.2981652987378002,
+          "count": 1,
+          "total": 15
+        },
+        "specificity": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7018347012621997,
+          "ci_high": 0.9881331045067314,
+          "count": 14,
+          "total": 15
+        },
+        "precision": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7018347012621997,
+          "ci_high": 0.9881331045067314,
+          "count": 14,
+          "total": 15
+        },
+        "accuracy": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7867654163738309,
+          "ci_high": 0.9815229762087296,
+          "count": 28,
+          "total": 30
+        },
+        "balanced_accuracy": 0.9333333333333333,
+        "f1": 0.9333333333333333
+      },
+      "roleplay_jailbreak": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 12,
+        "fp": 0,
+        "tn": 15,
+        "fn": 3,
+        "recall": {
+          "value": 0.8,
+          "ci_low": 0.5481455128483065,
+          "ci_high": 0.9295245065301844,
+          "count": 12,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.2,
+          "ci_low": 0.07047549346981555,
+          "ci_high": 0.4518544871516935,
+          "count": 3,
+          "total": 15
+        },
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "precision": {
+          "value": 1.0,
+          "ci_low": 0.7575059933447593,
+          "ci_high": 1.0,
+          "count": 12,
+          "total": 12
+        },
+        "accuracy": {
+          "value": 0.9,
+          "ci_low": 0.7437891742081593,
+          "ci_high": 0.9654001112526658,
+          "count": 27,
+          "total": 30
+        },
+        "balanced_accuracy": 0.9,
+        "f1": 0.8888888888888888
+      },
+      "sensitive_data_exfiltration": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 7,
+        "fp": 0,
+        "tn": 15,
+        "fn": 8,
+        "recall": {
+          "value": 0.4666666666666667,
+          "ci_low": 0.2480953536573739,
+          "ci_high": 0.698830199745016,
+          "count": 7,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.5333333333333333,
+          "ci_low": 0.30116980025498397,
+          "ci_high": 0.7519046463426261,
+          "count": 8,
+          "total": 15
+        },
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "precision": {
+          "value": 1.0,
+          "ci_low": 0.6456695649333126,
+          "ci_high": 1.0,
+          "count": 7,
+          "total": 7
+        },
+        "accuracy": {
+          "value": 0.7333333333333333,
+          "ci_low": 0.555520383048111,
+          "ci_high": 0.8581733668040368,
+          "count": 22,
+          "total": 30
+        },
+        "balanced_accuracy": 0.7333333333333334,
+        "f1": 0.6363636363636364
+      },
+      "system_prompt_extraction": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 15,
+        "fp": 1,
+        "tn": 14,
+        "fn": 0,
+        "recall": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.06666666666666667,
+          "ci_low": 0.011866895493268581,
+          "ci_high": 0.2981652987378002,
+          "count": 1,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "specificity": {
+          "value": 0.9333333333333333,
+          "ci_low": 0.7018347012621997,
+          "ci_high": 0.9881331045067314,
+          "count": 14,
+          "total": 15
+        },
+        "precision": {
+          "value": 0.9375,
+          "ci_low": 0.7167126242970108,
+          "ci_high": 0.9888806552353575,
+          "count": 15,
+          "total": 16
+        },
+        "accuracy": {
+          "value": 0.9666666666666667,
+          "ci_low": 0.8332960900859084,
+          "ci_high": 0.9940914096183876,
+          "count": 29,
+          "total": 30
+        },
+        "balanced_accuracy": 0.9666666666666667,
+        "f1": 0.967741935483871
+      },
+      "tool_action_abuse": {
+        "examples": 30,
+        "attacks": 15,
+        "benign": 15,
+        "tp": 8,
+        "fp": 0,
+        "tn": 15,
+        "fn": 7,
+        "recall": {
+          "value": 0.5333333333333333,
+          "ci_low": 0.30116980025498397,
+          "ci_high": 0.7519046463426261,
+          "count": 8,
+          "total": 15
+        },
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.20388330103584854,
+          "count": 0,
+          "total": 15
+        },
+        "false_negative_rate": {
+          "value": 0.4666666666666667,
+          "ci_low": 0.2480953536573739,
+          "ci_high": 0.698830199745016,
+          "count": 7,
+          "total": 15
+        },
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.7961166989641514,
+          "ci_high": 1.0,
+          "count": 15,
+          "total": 15
+        },
+        "precision": {
+          "value": 1.0,
+          "ci_low": 0.6755924351161198,
+          "ci_high": 1.0,
+          "count": 8,
+          "total": 8
+        },
+        "accuracy": {
+          "value": 0.7666666666666667,
+          "ci_low": 0.5907167384187784,
+          "ci_high": 0.8820761185551051,
+          "count": 23,
+          "total": 30
+        },
+        "balanced_accuracy": 0.7666666666666666,
+        "f1": 0.6956521739130435
+      },
+      "(none)": {
+        "examples": 450,
+        "attacks": 0,
+        "benign": 450,
+        "tp": 0,
+        "fp": 0,
+        "tn": 450,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.00846431886297066,
+          "count": 0,
+          "total": 450
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.9915356811370294,
+          "ci_high": 1.0,
+          "count": 450,
+          "total": 450
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.9915356811370294,
+          "ci_high": 1.0,
+          "count": 450,
+          "total": 450
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      }
+    }
+  },
+  "language_parity": [],
+  "sweep": {
+    "roc_auc": 0.9825777777777778,
+    "points": [
+      {
+        "threshold": 0.01,
+        "recall": {
+          "value": 0.8866666666666667,
+          "ci_low": 0.825997250162395,
+          "ci_high": 0.928025760859626,
+          "count": 133,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.043333333333333335,
+          "ci_low": 0.029740998134782662,
+          "ci_high": 0.06273602212439733,
+          "count": 26,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.05,
+        "recall": {
+          "value": 0.8533333333333334,
+          "ci_low": 0.7879153994391072,
+          "ci_high": 0.9011056278741189,
+          "count": 128,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.03166666666666667,
+          "ci_low": 0.020364911485651817,
+          "ci_high": 0.04892721513051452,
+          "count": 19,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.1,
+        "recall": {
+          "value": 0.8333333333333334,
+          "ci_low": 0.7655341358309921,
+          "ci_high": 0.884485701256957,
+          "count": 125,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.03166666666666667,
+          "ci_low": 0.020364911485651817,
+          "ci_high": 0.04892721513051452,
+          "count": 19,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.2,
+        "recall": {
+          "value": 0.8066666666666666,
+          "ci_low": 0.7361371418228315,
+          "ci_high": 0.8618811082980815,
+          "count": 121,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.02666666666666667,
+          "ci_low": 0.016479809814389863,
+          "ci_high": 0.042875933811913486,
+          "count": 16,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.3,
+        "recall": {
+          "value": 0.8,
+          "ci_low": 0.7288586692020037,
+          "ci_high": 0.8561591841771504,
+          "count": 120,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.025,
+          "ci_low": 0.015207839599852634,
+          "ci_high": 0.04083577636316304,
+          "count": 15,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.4,
+        "recall": {
+          "value": 0.78,
+          "ci_low": 0.7071769001714164,
+          "ci_high": 0.8388397629824608,
+          "count": 117,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.025,
+          "ci_low": 0.015207839599852634,
+          "ci_high": 0.04083577636316304,
+          "count": 15,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.5,
+        "recall": {
+          "value": 0.78,
+          "ci_low": 0.7071769001714164,
+          "ci_high": 0.8388397629824608,
+          "count": 117,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.015,
+          "ci_low": 0.007911242967693504,
+          "ci_high": 0.02825960701559618,
+          "count": 9,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.6,
+        "recall": {
+          "value": 0.7666666666666667,
+          "ci_low": 0.6928421847843321,
+          "ci_high": 0.827173684886027,
+          "count": 115,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.015,
+          "ci_low": 0.007911242967693504,
+          "ci_high": 0.02825960701559618,
+          "count": 9,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.7,
+        "recall": {
+          "value": 0.7533333333333333,
+          "ci_low": 0.6785967057397266,
+          "ci_high": 0.8154183704471145,
+          "count": 113,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.013333333333333334,
+          "ci_low": 0.0067713541493867446,
+          "ci_high": 0.02608736817061528,
+          "count": 8,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.8,
+        "recall": {
+          "value": 0.7466666666666667,
+          "ci_low": 0.6715059067359275,
+          "ci_high": 0.8095087727091548,
+          "count": 112,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.01,
+          "ci_low": 0.004590922177703894,
+          "ci_high": 0.0216435448157228,
+          "count": 6,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.9,
+        "recall": {
+          "value": 0.7266666666666667,
+          "ci_low": 0.6503549212540405,
+          "ci_high": 0.7916585679657648,
+          "count": 109,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.01,
+          "ci_low": 0.004590922177703894,
+          "ci_high": 0.0216435448157228,
+          "count": 6,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.95,
+        "recall": {
+          "value": 0.6933333333333334,
+          "ci_low": 0.6154815486776256,
+          "ci_high": 0.7615299568333848,
+          "count": 104,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.006666666666666667,
+          "ci_low": 0.002595501251514863,
+          "ci_high": 0.017014710415336504,
+          "count": 4,
+          "total": 600
+        }
+      },
+      {
+        "threshold": 0.99,
+        "recall": {
+          "value": 0.66,
+          "ci_low": 0.5810428721065096,
+          "ci_high": 0.730966649695706,
+          "count": 99,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.0033333333333333335,
+          "ci_low": 0.0009145966868046472,
+          "ci_high": 0.012071359653471392,
+          "count": 2,
+          "total": 600
+        }
+      }
+    ],
+    "operating_points": [
+      {
+        "max_false_positive_rate": 0.001,
+        "threshold": 0.9994412064552307,
+        "recall": {
+          "value": 0.4266666666666667,
+          "ci_low": 0.3503209045656491,
+          "ci_high": 0.5066747312750022,
+          "count": 64,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.006361701013700707,
+          "count": 0,
+          "total": 600
+        }
+      },
+      {
+        "max_false_positive_rate": 0.01,
+        "threshold": 0.8362777233123779,
+        "recall": {
+          "value": 0.7466666666666667,
+          "ci_low": 0.6715059067359275,
+          "ci_high": 0.8095087727091548,
+          "count": 112,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.01,
+          "ci_low": 0.004590922177703894,
+          "ci_high": 0.0216435448157228,
+          "count": 6,
+          "total": 600
+        }
+      },
+      {
+        "max_false_positive_rate": 0.05,
+        "threshold": 0.0018081289017573,
+        "recall": {
+          "value": 0.9066666666666666,
+          "ci_low": 0.8494360687243842,
+          "ci_high": 0.9435881325229135,
+          "count": 136,
+          "total": 150
+        },
+        "false_positive_rate": {
+          "value": 0.05,
+          "ci_low": 0.03524526778459468,
+          "ci_high": 0.07048026312773596,
+          "count": 30,
+          "total": 600
+        }
+      }
+    ]
+  },
+  "latency_ms": {
+    "measured": 750,
+    "mean": 48.35111835999942,
+    "p50": 47.1017240000009,
+    "p95": 58.49770068749649
+  },
+  "gates": [],
+  "errors": [],
+  "suite": {
+    "name": "open-detectors",
+    "dataset_key": "conversation-tr",
+    "detector_key": "wolf-defender",
+    "trained_on_this_dataset": false
+  }
+}

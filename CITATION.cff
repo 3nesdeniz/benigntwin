@@ -1,20 +1,25 @@
 cff-version: 1.2.0
-message: "If you use InjectBench, please cite it as below."
-title: "InjectBench: a reproducible benchmark for prompt-injection detectors and LLM guardrails"
+message: "If you use BenignTwin, please cite it as below."
+title: "BenignTwin: benchmarking prompt-injection detectors on matched benign/attack pairs"
 type: software
 authors:
   - family-names: "Deniz"
     given-names: "Enes"
     orcid: "https://orcid.org/0009-0006-9491-3565"
     affiliation: "AltaySec"
-version: "0.1.0"
-date-released: "2026-08-12"
+version: "1.0.0"
 license: Apache-2.0
-repository-code: "https://github.com/3nesdeniz/injectbench"
+repository-code: "https://github.com/3nesdeniz/benigntwin"
+abstract: >-
+  BenignTwin evaluates prompt-injection detectors and LLM guardrails on matched
+  pairs of an attack and a benign input that share topic and vocabulary. It reports
+  attack recall, the false-positive rate and pair accuracy with confidence intervals,
+  per attack family and per language.
 keywords:
-  - llm-security
   - prompt-injection
+  - llm-security
   - guardrails
-  - ai-security
-  - evaluation
   - benchmark
+  - false-positive-rate
+  - hard-negatives
+  - evaluation

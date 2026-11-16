@@ -1,0 +1,739 @@
+{
+  "schema_version": "2.0",
+  "tool": {
+    "name": "benigntwin",
+    "version": "1.0.0"
+  },
+  "run": {
+    "created_at": "2026-11-16T12:25:51Z",
+    "threshold": 0.5,
+    "decision": "auto",
+    "decisions_from_label": 0,
+    "decisions_from_score": 240,
+    "confidence": 0.95,
+    "python": "3.12.16",
+    "platform": "Linux x86_64"
+  },
+  "dataset": {
+    "source": "hf:fevziegeyurtsevenler/turkish-over-refusal-set",
+    "kind": "hub",
+    "split": "all",
+    "revision": "305625a4cc25d0ff0d15de7ef2fe30915d196f00",
+    "resolved_revision": "305625a4cc25d0ff0d15de7ef2fe30915d196f00",
+    "filters": {
+      "type": "safe"
+    },
+    "files": [
+      {
+        "path": "hf:fevziegeyurtsevenler/turkish-over-refusal-set/turkish_over_refusal.jsonl",
+        "sha256": "5e1910a1dfb129de7c68ee875143e2e810056efec895dec9b1b5cf663709f396",
+        "rows": 480
+      }
+    ],
+    "generated_ids": 240,
+    "examples": 240,
+    "attacks": 0,
+    "benign": 240,
+    "languages": {
+      "en": {
+        "attacks": 0,
+        "benign": 120
+      },
+      "tr": {
+        "attacks": 0,
+        "benign": 120
+      }
+    },
+    "splits": {
+      "unspecified": 240
+    },
+    "attack_families": {},
+    "pairs": {
+      "complete": 0,
+      "incomplete": 240,
+      "in_several_languages": 120
+    },
+    "text_chars": {
+      "min": 27,
+      "median": 60,
+      "max": 94
+    },
+    "warnings": [
+      "240 pair ids are not one benign row plus one attack row and are left out of the pair analysis (1 [en], 1 [tr], 10 [en], 10 [tr], 100 [en] and 235 more)",
+      "no attack rows: recall cannot be measured",
+      "240 rows had no id; ids were generated from row order"
+    ]
+  },
+  "detector": {
+    "name": "heuristic",
+    "type": "HeuristicDetector"
+  },
+  "coverage": {
+    "evaluated": 240,
+    "failed": 0,
+    "rate": 1.0
+  },
+  "metrics": {
+    "examples": 240,
+    "attacks": 0,
+    "benign": 240,
+    "tp": 0,
+    "fp": 0,
+    "tn": 240,
+    "fn": 0,
+    "recall": null,
+    "false_positive_rate": {
+      "value": 0.0,
+      "ci_low": 0.0,
+      "ci_high": 0.015753919941558808,
+      "count": 0,
+      "total": 240
+    },
+    "false_negative_rate": null,
+    "specificity": {
+      "value": 1.0,
+      "ci_low": 0.9842460800584412,
+      "ci_high": 1.0,
+      "count": 240,
+      "total": 240
+    },
+    "precision": null,
+    "accuracy": {
+      "value": 1.0,
+      "ci_low": 0.9842460800584412,
+      "ci_high": 1.0,
+      "count": 240,
+      "total": 240
+    },
+    "balanced_accuracy": null,
+    "f1": null
+  },
+  "pairs": {
+    "pairs": 0,
+    "separated": 0,
+    "blocked_both": 0,
+    "allowed_both": 0,
+    "inverted": 0,
+    "pair_accuracy": null,
+    "incomplete_pairs": 240,
+    "by_language": {},
+    "by_attack_family": {}
+  },
+  "slices": {
+    "language": {
+      "en": {
+        "examples": 120,
+        "attacks": 0,
+        "benign": 120,
+        "tp": 0,
+        "fp": 0,
+        "tn": 120,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.031019166418703472,
+          "count": 0,
+          "total": 120
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.9689808335812966,
+          "ci_high": 1.0,
+          "count": 120,
+          "total": 120
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.9689808335812966,
+          "ci_high": 1.0,
+          "count": 120,
+          "total": 120
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "tr": {
+        "examples": 120,
+        "attacks": 0,
+        "benign": 120,
+        "tp": 0,
+        "fp": 0,
+        "tn": 120,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.031019166418703472,
+          "count": 0,
+          "total": 120
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.9689808335812966,
+          "ci_high": 1.0,
+          "count": 120,
+          "total": 120
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.9689808335812966,
+          "ci_high": 1.0,
+          "count": 120,
+          "total": 120
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      }
+    },
+    "category": {
+      "cooking-chemistry": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "definitions": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "dual-use": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "fiction-writing": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "figurative": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "historical-education": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "homonym": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "medical-helpseeking": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "safe-target": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      },
+      "security-research": {
+        "examples": 24,
+        "attacks": 0,
+        "benign": 24,
+        "tp": 0,
+        "fp": 0,
+        "tn": 24,
+        "fn": 0,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.13797620467498012,
+          "count": 0,
+          "total": 24
+        },
+        "false_negative_rate": null,
+        "specificity": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "precision": null,
+        "accuracy": {
+          "value": 1.0,
+          "ci_low": 0.8620237953250198,
+          "ci_high": 1.0,
+          "count": 24,
+          "total": 24
+        },
+        "balanced_accuracy": null,
+        "f1": null
+      }
+    }
+  },
+  "language_parity": [
+    {
+      "first": "en",
+      "second": "tr",
+      "side": "benign",
+      "matched_items": 120,
+      "first_flagged": {
+        "value": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.031019166418703472,
+        "count": 0,
+        "total": 120
+      },
+      "second_flagged": {
+        "value": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.031019166418703472,
+        "count": 0,
+        "total": 120
+      },
+      "only_first": 0,
+      "only_second": 0,
+      "both": 0,
+      "neither": 120,
+      "difference": 0.0,
+      "p_value": null
+    }
+  ],
+  "sweep": {
+    "roc_auc": null,
+    "points": [
+      {
+        "threshold": 0.01,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.05,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.1,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.2,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.3,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.4,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.5,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.6,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.7,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.8,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.9,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.95,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      },
+      {
+        "threshold": 0.99,
+        "recall": null,
+        "false_positive_rate": {
+          "value": 0.0,
+          "ci_low": 0.0,
+          "ci_high": 0.015753919941558808,
+          "count": 0,
+          "total": 240
+        }
+      }
+    ],
+    "operating_points": []
+  },
+  "latency_ms": {
+    "measured": 240,
+    "mean": 0.023112091666810386,
+    "p50": 0.022414000000026135,
+    "p95": 0.030016999999560305
+  },
+  "gates": [],
+  "errors": [],
+  "suite": {
+    "name": "open-detectors",
+    "dataset_key": "over-refusal-benign",
+    "detector_key": "heuristic",
+    "trained_on_this_dataset": false
+  }
+}
