@@ -1,6 +1,6 @@
 # Metrics
 
-This page defines every number InjectBench reports and says what it does and does not tell you.
+This page defines every number BenignTwin reports and says what it does and does not tell you.
 
 ## Terms
 
@@ -94,12 +94,12 @@ Pairs that are not complete are counted as `incomplete_pairs` and left out.
 `--slice-by` breaks the results down by one or more columns. The defaults are `language` and `attack_family`. Any column of the dataset can be used, and two columns can be crossed with `+`:
 
 ```bash
-injectbench evaluate ... --slice-by language,attack_family,language+attack_family,source_context
+benigntwin evaluate ... --slice-by language,attack_family,language+attack_family,source_context
 ```
 
 ### How benign rows get an attack family
 
-A benign row has no attack family of its own, so a per-family false-positive rate needs a rule. InjectBench uses, in this order:
+A benign row has no attack family of its own, so a per-family false-positive rate needs a rule. BenignTwin uses, in this order:
 
 1. the `pair_family` column, if the dataset has one;
 2. the family of the attack the row is paired with;
@@ -109,7 +109,7 @@ The per-family false-positive rate is therefore the rate at which the detector b
 
 ## Language parity
 
-When the same item exists in several languages (rows that share a `pair_id` and a label but differ in language), InjectBench compares the languages on exactly those items:
+When the same item exists in several languages (rows that share a `pair_id` and a label but differ in language), BenignTwin compares the languages on exactly those items:
 
 | Field | Meaning |
 | --- | --- |

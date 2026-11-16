@@ -7,9 +7,9 @@ from pathlib import Path
 
 import pytest
 
+from benigntwin import datasets
+from benigntwin.datasets import DatasetError, FieldMap, load_dataset, validate_examples
 from conftest import PAIRED_ROWS, examples_from
-from injectbench import datasets
-from injectbench.datasets import DatasetError, FieldMap, load_dataset, validate_examples
 
 
 def test_load_jsonl_file_with_provenance(write_jsonl):
@@ -275,11 +275,11 @@ def test_conflicting_revisions_are_rejected():
 
 
 def test_cache_dir_honours_the_environment(monkeypatch, tmp_path):
-    monkeypatch.setenv("INJECTBENCH_CACHE_DIR", str(tmp_path / "cache"))
+    monkeypatch.setenv("BENIGNTWIN_CACHE_DIR", str(tmp_path / "cache"))
     assert datasets.cache_dir() == tmp_path / "cache"
-    monkeypatch.delenv("INJECTBENCH_CACHE_DIR")
+    monkeypatch.delenv("BENIGNTWIN_CACHE_DIR")
     monkeypatch.setenv("XDG_CACHE_HOME", str(tmp_path / "xdg"))
-    assert datasets.cache_dir() == tmp_path / "xdg" / "injectbench"
+    assert datasets.cache_dir() == tmp_path / "xdg" / "benigntwin"
 
 
 def test_token_is_only_sent_to_the_hub(monkeypatch):

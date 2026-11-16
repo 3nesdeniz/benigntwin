@@ -43,9 +43,9 @@ jobs:
         run: pytest
       - name: Try the command line on the example data
         run: |
-          injectbench validate --dataset examples/pairs.jsonl
-          injectbench evaluate --dataset examples/pairs.jsonl --detector python:examples/my_detector.py:detect --format json -o report.json
-          injectbench compare report.json
+          benigntwin validate --dataset examples/pairs.jsonl
+          benigntwin evaluate --dataset examples/pairs.jsonl --detector python:examples/my_detector.py:detect --format json -o report.json
+          benigntwin compare report.json
 
   package:
     name: Build the package
@@ -66,5 +66,5 @@ jobs:
         run: |
           python -m venv /tmp/clean
           /tmp/clean/bin/pip install dist/*.whl
-          /tmp/clean/bin/injectbench --version
-          /tmp/clean/bin/injectbench evaluate --dataset examples/pairs.jsonl --detector heuristic
+          /tmp/clean/bin/benigntwin --version
+          /tmp/clean/bin/benigntwin evaluate --dataset examples/pairs.jsonl --detector heuristic

@@ -14,7 +14,7 @@ Until version 1.0, only the latest release receives security fixes.
 
 ## What the tool does with your data and code
 
-InjectBench is a local command-line tool. Its trust boundaries are:
+BenignTwin is a local command-line tool. Its trust boundaries are:
 
 | Action | What happens | What to keep in mind |
 | --- | --- | --- |

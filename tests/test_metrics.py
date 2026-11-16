@@ -5,8 +5,7 @@ from typing import Any
 
 import pytest
 
-from conftest import PAIRED_ROWS, examples_from
-from injectbench.metrics import (
+from benigntwin.metrics import (
     NO_VALUE,
     binary_metrics,
     family_resolver,
@@ -17,7 +16,8 @@ from injectbench.metrics import (
     slice_metrics,
     threshold_sweep,
 )
-from injectbench.models import Example, Prediction, Record
+from benigntwin.models import Example, Prediction, Record
+from conftest import PAIRED_ROWS, examples_from
 
 # A detector that works in English and breaks in Turkish: it misses one Turkish
 # attack and flags both Turkish benign twins.

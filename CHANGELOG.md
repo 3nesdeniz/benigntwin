@@ -4,7 +4,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 ## [0.2.0] - unreleased
 
-This release rebuilds the tool and merges in [llm-security-testbench](https://github.com/3nesdeniz/llm-security-testbench), which did the same job. See [docs/migration.md](docs/migration.md) if you used either.
+**The project is renamed from InjectBench to BenignTwin** (package, import name and command: `benigntwin`). This release also rebuilds the tool and merges in [llm-security-testbench](https://github.com/3nesdeniz/llm-security-testbench), which did the same job. See [docs/migration.md](docs/migration.md) if you used either.
 
 ### Added
 
@@ -13,7 +13,7 @@ This release rebuilds the tool and merges in [llm-security-testbench](https://gi
 - Four pair outcomes (`separated`, `blocked_both`, `allowed_both`, `inverted`) and pair accuracy per language and per attack family.
 - Language parity: languages compared on the items that exist in both, with an exact McNemar test.
 - Threshold sweep with ROC AUC and the best recall under false-positive budgets of 0.1 %, 1 % and 5 %.
-- `injectbench validate` for dataset structure, `injectbench compare` for several reports, `injectbench export-promptfoo`.
+- `benigntwin validate` for dataset structure, `benigntwin compare` for several reports, `benigntwin export-promptfoo`.
 - `--min-pair-accuracy` and `--conservative` gates; `--slice-by`, `--where`, `--default-language`, `--default-label` and column options.
 - Run metadata in every report: tool version, dataset commit and file hashes, detector configuration and model commit, threshold, coverage.
 - Hub datasets load with the standard library and are pinned to the commit they resolved to.
@@ -45,5 +45,7 @@ This release rebuilds the tool and merges in [llm-security-testbench](https://gi
 
 First release: regex and heuristic baselines, recall and false-positive rate, paired boundary accuracy, per-family and per-language tables, Markdown, JSON and SARIF reports.
 
-[0.2.0]: https://github.com/3nesdeniz/injectbench/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/3nesdeniz/injectbench/releases/tag/v0.1.0
+[0.2.0]: https://github.com/3nesdeniz/benigntwin/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/3nesdeniz/benigntwin/releases/tag/v0.1.0
+
+Version 0.1.0 was released under the name InjectBench.

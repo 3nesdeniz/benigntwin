@@ -4,12 +4,12 @@ from typing import ClassVar
 
 import pytest
 
+from benigntwin import __version__
+from benigntwin.datasets import load_dataset
+from benigntwin.detectors import Detector
+from benigntwin.evaluate import SCHEMA_VERSION, EvaluationError, evaluate
+from benigntwin.models import Example, Prediction
 from conftest import PAIRED_ROWS, ScriptedDetector, examples_from
-from injectbench import __version__
-from injectbench.datasets import load_dataset
-from injectbench.detectors import Detector
-from injectbench.evaluate import SCHEMA_VERSION, EvaluationError, evaluate
-from injectbench.models import Example, Prediction
 from test_metrics import ENGLISH_ONLY, SCORES, counts
 
 
@@ -18,7 +18,7 @@ def test_report_contents(paired_examples):
     result = evaluate(paired_examples, detector)
     report = result.report
     assert report["schema_version"] == SCHEMA_VERSION == "2.0"
-    assert report["tool"] == {"name": "injectbench", "version": __version__}
+    assert report["tool"] == {"name": "benigntwin", "version": __version__}
     run = report["run"]
     assert (run["threshold"], run["decision"], run["confidence"]) == (0.5, "auto", 0.95)
     assert (run["decisions_from_label"], run["decisions_from_score"]) == (9, 0)
@@ -186,7 +186,7 @@ def test_workers_are_passed_through(paired_examples):
 
 
 def test_public_api_quick_start_shape():
-    import injectbench
+    import benigntwin
 
     examples = [
         Example(
@@ -198,6 +198,6 @@ def test_public_api_quick_start_shape():
         ),
         Example(id="b", text="Explain what a system prompt is.", label=0, pair_id="p", language="en"),
     ]
-    result = injectbench.evaluate(examples, injectbench.build_detector("heuristic"))
+    result = benigntwin.evaluate(examples, benigntwin.build_detector("heuristic"))
     assert result.report["pairs"]["separated"] == 1
-    assert "# InjectBench report" in injectbench.render(result.report, "markdown")
+    assert "# BenignTwin report" in benigntwin.render(result.report, "markdown")

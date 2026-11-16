@@ -1,21 +1,21 @@
 # Datasets
 
-InjectBench reads labelled inputs from a file, a directory or the Hugging Face Hub and checks their structure before it measures anything.
+BenignTwin reads labelled inputs from a file, a directory or the Hugging Face Hub and checks their structure before it measures anything.
 
 ## Sources
 
 ```bash
 # a single file: every row is loaded
-injectbench evaluate --dataset data/pairs.jsonl ...
+benigntwin evaluate --dataset data/pairs.jsonl ...
 
 # a directory with data/<split>.jsonl (or .parquet): the test split by default
-injectbench evaluate --dataset path/to/dataset --split all ...
+benigntwin evaluate --dataset path/to/dataset --split all ...
 
 # a dataset on the Hugging Face Hub, pinned to a commit
-injectbench evaluate --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs@a5682e7573e1 ...
+benigntwin evaluate --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs@a5682e7573e1 ...
 
 # a Hub dataset that does not use the data/<split> layout
-injectbench evaluate --dataset hf:owner/name --hf-file some/file.jsonl ...
+benigntwin evaluate --dataset hf:owner/name --hf-file some/file.jsonl ...
 ```
 
 | Source | Formats | Notes |
@@ -24,13 +24,13 @@ injectbench evaluate --dataset hf:owner/name --hf-file some/file.jsonl ...
 | directory | `data/<split>.jsonl`, `<split>.jsonl`, or the same with `.parquet` | `--split train`, `validation`, `test` (default) or `all` |
 | `hf:owner/name[@revision]` | same layouts as a directory | downloaded with the standard library and cached |
 
-Reading `.parquet` needs `pyarrow`: `pip install "injectbench[parquet]"`. Everything else has no dependencies.
+Reading `.parquet` needs `pyarrow`: `pip install "benigntwin[parquet]"`. Everything else has no dependencies.
 
-Hub downloads are cached under `~/.cache/injectbench` (`INJECTBENCH_CACHE_DIR` changes the location, `--refresh` downloads again). Set `HF_TOKEN` for gated or private datasets; the token is only sent to the Hub.
+Hub downloads are cached under `~/.cache/benigntwin` (`BENIGNTWIN_CACHE_DIR` changes the location, `--refresh` downloads again). Set `HF_TOKEN` for gated or private datasets; the token is only sent to the Hub.
 
 ### Pin the revision
 
-A branch such as `main` moves. InjectBench asks the Hub which commit the revision points at, downloads that commit and records it in the report together with a SHA-256 hash of every file it read:
+A branch such as `main` moves. BenignTwin asks the Hub which commit the revision points at, downloads that commit and records it in the report together with a SHA-256 hash of every file it read:
 
 ```json
 "dataset": {
@@ -90,7 +90,7 @@ A row without a language tag is reported as `unknown`. It is never assumed to be
 `--where COLUMN=VALUE` keeps the rows whose column equals the value. It can be repeated; all conditions must hold.
 
 ```bash
-injectbench evaluate --dataset hf:fevziegeyurtsevenler/turkish-over-refusal-set \
+benigntwin evaluate --dataset hf:fevziegeyurtsevenler/turkish-over-refusal-set \
   --hf-file turkish_over_refusal.jsonl --where type=safe --detector ...
 ```
 
@@ -99,7 +99,7 @@ The filter is recorded in the report (`dataset.filters`).
 ## Validation
 
 ```bash
-injectbench validate --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs --split all
+benigntwin validate --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs --split all
 ```
 
 ```text
@@ -135,7 +135,7 @@ The value of a pair comes from how little separates its two rows. Guidelines tha
 - **Change the security decision, nothing else.** The attack crosses an instruction, authorization, trust, confidentiality or approval boundary. The benign twin does not.
 - **Share the trigger words.** If the attack says "ignore", "system prompt" or "approval", let the benign twin use them legitimately. A twin about an unrelated subject only tests whether a detector recognizes subjects.
 - **Keep the two rows similar in length and tone**, so length is not a cue.
-- **One attack, one twin, one language per pair.** For another language, add a translated attack and a translated twin with the same `pair_id` and a different `language`. InjectBench then reports [language parity](metrics.md#language-parity) on exactly these items.
+- **One attack, one twin, one language per pair.** For another language, add a translated attack and a translated twin with the same `pair_id` and a different `language`. BenignTwin then reports [language parity](metrics.md#language-parity) on exactly these items.
 - **Keep both rows of a pair in the same split.**
 - **Have a native speaker review translated rows.** Machine translation tends to produce unnatural benign rows, which inflates false positives for reasons that have nothing to do with the detector.
 

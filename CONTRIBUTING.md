@@ -5,8 +5,8 @@ Bug reports, corrections to the documentation and new adapters are welcome.
 ## Setup
 
 ```bash
-git clone https://github.com/3nesdeniz/injectbench
-cd injectbench
+git clone https://github.com/3nesdeniz/benigntwin
+cd benigntwin
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 ```

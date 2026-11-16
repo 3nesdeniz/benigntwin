@@ -1,7 +1,7 @@
 """Two transparent reference detectors.
 
 They exist so that every report has a floor to compare against, and as worked
-examples of the :class:`~injectbench.detectors.base.Detector` interface. They
+examples of the :class:`~benigntwin.detectors.base.Detector` interface. They
 are keyword matchers, not guardrails: do not deploy them.
 """
 

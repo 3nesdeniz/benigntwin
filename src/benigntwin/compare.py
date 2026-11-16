@@ -1,6 +1,6 @@
 """Put several JSON reports side by side.
 
-``injectbench compare a.json b.json`` prints one row per detector. Reports are
+``benigntwin compare a.json b.json`` prints one row per detector. Reports are
 only comparable when they were computed on the same data, so the comparison
 says so when the dataset fingerprints differ.
 """
@@ -12,7 +12,7 @@ from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
-from .models import InjectBenchError
+from .models import BenignTwinError
 from .report import format_rate
 
 __all__ = ["CompareError", "compare_reports", "load_report", "render_comparison"]
@@ -20,12 +20,12 @@ __all__ = ["CompareError", "compare_reports", "load_report", "render_comparison"
 _SORT_KEYS = ("pair_accuracy", "false_positive_rate", "recall", "detector")
 
 
-class CompareError(InjectBenchError):
+class CompareError(BenignTwinError):
     """Reports cannot be loaded or compared."""
 
 
 def load_report(path: str | Path) -> dict[str, Any]:
-    """Read a JSON report written by ``injectbench evaluate --format json``."""
+    """Read a JSON report written by ``benigntwin evaluate --format json``."""
 
     source = Path(path).expanduser()
     try:
@@ -35,7 +35,7 @@ def load_report(path: str | Path) -> dict[str, Any]:
     except json.JSONDecodeError as exc:
         raise CompareError(f"{source}: invalid JSON: {exc.msg}") from exc
     if not isinstance(payload, dict) or "metrics" not in payload or "detector" not in payload:
-        raise CompareError(f"{source}: not an InjectBench report")
+        raise CompareError(f"{source}: not an BenignTwin report")
     major = str(payload.get("schema_version", "")).split(".")[0]
     if major != "2":
         raise CompareError(
@@ -113,7 +113,7 @@ def render_comparison(comparison: Mapping[str, Any], fmt: str = "markdown") -> s
         raise CompareError(f"unknown comparison format {fmt!r}; choose markdown or json")
     dataset = comparison["dataset"]
     lines = [
-        f"# InjectBench comparison on `{dataset['source']}` ({dataset['split']})",
+        f"# BenignTwin comparison on `{dataset['source']}` ({dataset['split']})",
         "",
     ]
     if not comparison["same_dataset"]:

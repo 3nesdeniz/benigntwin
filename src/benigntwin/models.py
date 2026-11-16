@@ -14,8 +14,8 @@ from typing import Any
 __all__ = [
     "NEGATIVE_LABELS",
     "POSITIVE_LABELS",
+    "BenignTwinError",
     "Example",
-    "InjectBenchError",
     "LabelError",
     "ModelError",
     "Prediction",
@@ -25,11 +25,11 @@ __all__ = [
 ]
 
 
-class InjectBenchError(Exception):
-    """Base class for every error InjectBench raises on purpose."""
+class BenignTwinError(Exception):
+    """Base class for every error BenignTwin raises on purpose."""
 
 
-class ModelError(InjectBenchError, ValueError):
+class ModelError(BenignTwinError, ValueError):
     """A row or a prediction cannot be turned into a valid object."""
 
 
@@ -106,7 +106,7 @@ def normalize_label(
 def normalize_language(value: Any) -> str:
     """Normalize a language tag to lower case with ``-`` separators.
 
-    ``None`` and empty values become ``"unknown"``: InjectBench never assumes
+    ``None`` and empty values become ``"unknown"``: BenignTwin never assumes
     that an untagged row is English.
     """
 

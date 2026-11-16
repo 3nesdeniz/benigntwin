@@ -39,7 +39,7 @@ Detectors are often trained on English data and deployed in front of users who w
 - **Missed attacks.** An attack translated into another language is not recognized.
 - **False alarms.** Benign input in another language is flagged because it looks unusual to the model.
 
-The second failure does not show up in any attack-only test. InjectBench reports recall and the false-positive rate per language, and when the same items exist in several languages it compares the languages on exactly those items ([language parity](metrics.md#language-parity)), so a difference cannot come from the content.
+The second failure does not show up in any attack-only test. BenignTwin reports recall and the false-positive rate per language, and when the same items exist in several languages it compares the languages on exactly those items ([language parity](metrics.md#language-parity)), so a difference cannot come from the content.
 
 Before reading a per-language result, check what the developers of the detector say about languages. A model documented as English-only that flags Turkish input is being used outside its documented scope. That is still worth knowing before you deploy it in front of Turkish users, but it is a finding about the deployment, not a defect of the model.
 
@@ -58,7 +58,7 @@ Report them separately when the dataset allows it (`--slice-by category`, for ex
 - **Your traffic.** Public pairs show whether a detector can read intent. They do not have the mix, the length or the formatting of your application's inputs. Add your own benign inputs.
 - **The rest of the system.** A detector is one layer. What an attack can do after it slips through depends on privileges, input segregation, output handling and human oversight.
 - **Indirect injection in long documents.** The public pair datasets are short. For attacks buried in long content, check how many inputs were truncated and consider `--long-text window`.
-- **Data quality.** A pair is only as good as its benign twin. Validate datasets (`injectbench validate`) and review a sample by hand.
+- **Data quality.** A pair is only as good as its benign twin. Validate datasets (`benigntwin validate`) and review a sample by hand.
 
 ## Checklist for a result you publish
 

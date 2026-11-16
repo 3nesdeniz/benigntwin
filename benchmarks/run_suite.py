@@ -20,17 +20,17 @@ import time
 from pathlib import Path
 from typing import Any
 
-from injectbench import (
+from benigntwin import (
+    BenignTwinError,
     Dataset,
     DetectorOptions,
     FieldMap,
-    InjectBenchError,
     build_detector,
     evaluate,
     load_dataset,
     render,
 )
-from injectbench.report import format_rate, write_text
+from benigntwin.report import format_rate, write_text
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -95,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         try:
             detector = build_detector(detector_entry["spec"], options)
-        except InjectBenchError as exc:
+        except BenignTwinError as exc:
             print(f"FAILED {detector_entry['key']}: {exc}", file=sys.stderr)
             failures += 1
             continue
@@ -112,7 +112,7 @@ def main(argv: list[str] | None = None) -> int:
                     confidence=suite["confidence"],
                     slice_by=["language", *dataset_entry.get("slice_by", [])],
                 )
-            except InjectBenchError as exc:
+            except BenignTwinError as exc:
                 print(f"FAILED {key} x {detector_entry['key']}: {exc}", file=sys.stderr)
                 failures += 1
                 continue

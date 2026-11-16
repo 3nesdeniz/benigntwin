@@ -7,7 +7,7 @@ Sources:
 * a dataset on the Hugging Face Hub: ``hf:owner/name`` or ``hf:owner/name@revision``.
 
 Loading uses only the standard library. Reading ``.parquet`` needs ``pyarrow``
-(``pip install "injectbench[parquet]"``).
+(``pip install "benigntwin[parquet]"``).
 """
 
 from __future__ import annotations
@@ -28,8 +28,8 @@ from typing import Any
 
 from ._version import __version__
 from .models import (
+    BenignTwinError,
     Example,
-    InjectBenchError,
     ModelError,
     normalize_family,
     normalize_label,
@@ -54,13 +54,13 @@ _HUB_PREFIXES = ("hf://", "hf:")
 _JSONL_SUFFIXES = (".jsonl", ".ndjson")
 
 
-class DatasetError(InjectBenchError):
+class DatasetError(BenignTwinError):
     """A dataset cannot be found, read or parsed."""
 
 
 @dataclass(frozen=True, slots=True)
 class FieldMap:
-    """Which source columns feed which :class:`~injectbench.models.Example` field.
+    """Which source columns feed which :class:`~benigntwin.models.Example` field.
 
     Each entry lists accepted column names in order of preference. An empty
     ``id`` tuple means "always generate ids from row order".
@@ -260,7 +260,7 @@ def _rows_from_parquet(path: Path) -> list[tuple[int, Mapping[str, Any]]]:
         import pyarrow.parquet as parquet
     except ImportError as exc:
         raise DatasetError(
-            f'{path.name} is a .parquet file; reading it needs pyarrow: pip install "injectbench[parquet]"'
+            f'{path.name} is a .parquet file; reading it needs pyarrow: pip install "benigntwin[parquet]"'
         ) from exc
     try:
         table = parquet.read_table(path)
@@ -338,12 +338,12 @@ def _filter_hint(collector: _Collector) -> str:
 
 
 def cache_dir() -> Path:
-    """Directory for downloaded datasets (``INJECTBENCH_CACHE_DIR`` overrides it)."""
+    """Directory for downloaded datasets (``BENIGNTWIN_CACHE_DIR`` overrides it)."""
 
-    override = os.environ.get("INJECTBENCH_CACHE_DIR")
+    override = os.environ.get("BENIGNTWIN_CACHE_DIR")
     if override:
         return Path(override).expanduser()
-    return Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache") / "injectbench"
+    return Path(os.environ.get("XDG_CACHE_HOME") or Path.home() / ".cache") / "benigntwin"
 
 
 def _hub_endpoint() -> str:
@@ -351,7 +351,7 @@ def _hub_endpoint() -> str:
 
 
 def _http_get(url: str, *, timeout: float = 60.0) -> bytes:
-    headers = {"User-Agent": f"injectbench/{__version__}"}
+    headers = {"User-Agent": f"benigntwin/{__version__}"}
     token = os.environ.get("HF_TOKEN")
     if token and url.startswith(_hub_endpoint() + "/"):
         headers["Authorization"] = f"Bearer {token}"

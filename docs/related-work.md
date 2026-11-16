@@ -1,6 +1,6 @@
 # Related work
 
-InjectBench is one of several ways to evaluate prompt-injection detectors. This page says what the others measure, so you can pick the right tool or combine them. Facts were checked against each project's own pages on 16 November 2026; corrections are welcome as issues.
+BenignTwin is one of several ways to evaluate prompt-injection detectors. This page says what the others measure, so you can pick the right tool or combine them. Facts were checked against each project's own pages on 16 November 2026; corrections are welcome as issues.
 
 ## Benchmarks for detectors and guardrails
 
@@ -15,13 +15,13 @@ InjectBench is one of several ways to evaluate prompt-injection detectors. This 
 | [injection-bench](https://github.com/ashishdhillon/injection-bench) | time-split harness: AUC and recall at fixed false-positive rates with bootstrap intervals | false-positive-anchored operating points | English | public, MIT |
 | [Open-Prompt-Injection](https://github.com/liu00222/Open-Prompt-Injection) (USENIX Security 2024) | attacks and defenses across tasks and models | false-positive and false-negative rates for its own detection defenses | English | public, MIT |
 
-Several of these report a false-positive rate, and some use hard negatives. What InjectBench adds is the **pair as the unit of scoring**: each attack is evaluated together with its own benign twin, and the result says in how many pairs the detector flagged the attack and cleared the twin. We did not find another open tool for text detectors that reports this joint outcome. If you know one, please open an issue so this page can be corrected.
+Several of these report a false-positive rate, and some use hard negatives. What BenignTwin adds is the **pair as the unit of scoring**: each attack is evaluated together with its own benign twin, and the result says in how many pairs the detector flagged the attack and cleared the twin. We did not find another open tool for text detectors that reports this joint outcome. If you know one, please open an issue so this page can be corrected.
 
 The other differences are practical: confidence intervals with the counts on every rate, a comparison of languages on matched items, exit codes for CI, and adapters for models, functions, endpoints and offline predictions in one command.
 
 ## Over-refusal test suites for language models
 
-[XSTest](https://github.com/paul-rottger/xstest) (NAACL 2024) pairs 250 safe prompts that look unsafe with 200 unsafe contrast prompts, and [OR-Bench](https://huggingface.co/datasets/bench-llm/or-bench) (ICML 2025) collects prompts that models wrongly refuse. Both measure whether a *language model* refuses a safe request. InjectBench applies the same idea, a benign input that resembles a harmful one, to *detectors*, and scores each benign input against its matched attack.
+[XSTest](https://github.com/paul-rottger/xstest) (NAACL 2024) pairs 250 safe prompts that look unsafe with 200 unsafe contrast prompts, and [OR-Bench](https://huggingface.co/datasets/bench-llm/or-bench) (ICML 2025) collects prompts that models wrongly refuse. Both measure whether a *language model* refuses a safe request. BenignTwin applies the same idea, a benign input that resembles a harmful one, to *detectors*, and scores each benign input against its matched attack.
 
 ## Tools that test models and agents, not detectors
 
@@ -34,12 +34,12 @@ The other differences are practical: confidence intervals with the counts on eve
 | [BIPIA](https://github.com/microsoft/BIPIA), [InjecAgent](https://github.com/uiuc-kang-lab/InjecAgent) | indirect prompt injection against models and tool-using agents |
 | [CyberSecEval](https://github.com/meta-llama/PurpleLlama) | susceptibility of models to prompt injection, including a multilingual set |
 
-These answer a different question: does the model or the agent do what the attack asks? InjectBench answers: does the detector in front of it tell an attack from a legitimate request? The two are complementary. `injectbench export-promptfoo` writes a dataset as a Promptfoo test suite for teams that already run Promptfoo.
+These answer a different question: does the model or the agent do what the attack asks? BenignTwin answers: does the detector in front of it tell an attack from a legitimate request? The two are complementary. `benigntwin export-promptfoo` writes a dataset as a Promptfoo test suite for teams that already run Promptfoo.
 
 ## Where the datasets in the results are used elsewhere
 
 The [boundary-pairs dataset](https://huggingface.co/datasets/3nesdeniz/agentic-prompt-injection-boundary-pairs) used in the [results](../results/README.md) is also part of the Horizon-Labs evaluation suite (`boundary_pairs_test`), where it is scored per row. The model card of `Horizon-Labs/prompt-injection-guard-base` lists the train split of that dataset among its training data, which is why that model is marked in the results on all splits.
 
-## A note on the name
+## Earlier name
 
-"InjectBench" is also the title of a 2024 master's thesis on indirect prompt injection ([Kong, Virginia Tech](https://vtechworks.lib.vt.edu/items/c8a6b2f2-9b51-4e02-9778-aa4840fa30d8)), and the unrelated PyPI package `injection-bench` installs a module called `injectbench`. This project is not connected to either.
+Until version 0.1.0 this project was called InjectBench. It was renamed because that name is also the title of a 2024 master's thesis on indirect prompt injection ([Kong, Virginia Tech](https://vtechworks.lib.vt.edu/items/c8a6b2f2-9b51-4e02-9778-aa4840fa30d8)) and the name of a module installed by the unrelated PyPI package `injection-bench`. BenignTwin is not connected to either.

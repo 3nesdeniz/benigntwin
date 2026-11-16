@@ -1,10 +1,13 @@
 # Migrating to 0.2
 
+Version 0.2 renames the project from **InjectBench** to **BenignTwin**. The package, the import name and the command are now `benigntwin`. The old name was shared with a 2024 thesis and with a module shipped by an unrelated PyPI package, which made the tool hard to find and could lead to file conflicts.
+
 ## From InjectBench 0.1.0
 
-| 0.1.0 | 0.2 |
+| InjectBench 0.1.0 | BenignTwin 0.2 |
 | --- | --- |
-| `from injectbench import load` | `from injectbench import load_dataset` |
+| `injectbench` (command and import) | `benigntwin` |
+| `from injectbench import load` | `from benigntwin import load_dataset` |
 | `load("hf:owner/name", split="test")` | `load_dataset("hf:owner/name", split="test")` |
 | `evaluate(detector, examples, dataset_name=...)` | `evaluate(dataset, detector)` (the dataset comes first) |
 | `result.overall.fpr` | `result.report["metrics"]["false_positive_rate"]["value"]` |
@@ -22,15 +25,15 @@ Behaviour that changed:
 - **Exit status.** 2 and 3 still mean the false-positive and recall gates failed. Usage errors moved from 2 to 64.
 - **Python.** 3.10 or newer.
 
-The command line of 0.1.0 still works: `injectbench evaluate --dataset ... --detector heuristic --max-fpr 0.05 --min-recall 0.9`.
+The options of 0.1.0 still work under the new command: `benigntwin evaluate --dataset ... --detector heuristic --max-fpr 0.05 --min-recall 0.9`.
 
 ## From llm-security-testbench
 
-InjectBench 0.2 contains what the testbench did. The command is `injectbench` instead of `llmst`.
+BenignTwin 0.2 contains what the testbench did. The command is `benigntwin` instead of `llmst`.
 
-| llm-security-testbench | InjectBench 0.2 |
+| llm-security-testbench | BenignTwin 0.2 |
 | --- | --- |
-| `llmst validate --dataset ...` | `injectbench validate --dataset ...` |
+| `llmst validate --dataset ...` | `benigntwin validate --dataset ...` |
 | `--dataset hf://owner/name@rev` | unchanged (`hf:owner/name@rev` also works) |
 | `--predictions file.jsonl` | `--detector predictions:file.jsonl` |
 | `--python path.py:function` | `--detector python:path.py:function` |
@@ -38,7 +41,7 @@ InjectBench 0.2 contains what the testbench did. The command is `injectbench` in
 | `--max-workers 4` | `--workers 4` |
 | `--allow-missing` | `--allow-errors` |
 | `--output-dir reports/` | `--format json -o report.json --save-predictions predictions.jsonl` |
-| `llmst export-promptfoo` | `injectbench export-promptfoo` |
+| `llmst export-promptfoo` | `benigntwin export-promptfoo` |
 
 Two things behave differently on purpose:
 

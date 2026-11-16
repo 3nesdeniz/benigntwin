@@ -9,9 +9,9 @@ from typing import Any
 
 import pytest
 
-from injectbench.datasets import FieldMap, example_from_row
-from injectbench.detectors import Detector
-from injectbench.models import Example, Prediction
+from benigntwin.datasets import FieldMap, example_from_row
+from benigntwin.detectors import Detector
+from benigntwin.models import Example, Prediction
 
 # Two pairs (p1, p2), each present in English and Turkish, plus one ordinary
 # benign row. Every attack has a benign twin on the same topic.

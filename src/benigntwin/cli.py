@@ -1,4 +1,4 @@
-"""Command-line interface: ``injectbench evaluate | validate | compare | detectors | export-promptfoo``.
+"""Command-line interface: ``benigntwin evaluate | validate | compare | detectors | export-promptfoo``.
 
 Exit status of ``evaluate``:
 
@@ -26,13 +26,13 @@ from .detectors import DetectorOptions, available_detectors, build_detector
 from .evaluate import DEFAULT_SLICES, evaluate
 from .export import export_promptfoo
 from .gates import EXIT_ERROR, EXIT_OK, EXIT_USAGE, check_gates, exit_code
-from .models import InjectBenchError
+from .models import BenignTwinError
 from .report import FORMATS, predictions_jsonl, render, write_text
 
 __all__ = ["build_parser", "main"]
 
 _DETECTOR_HELP = (
-    "detector to evaluate: a registered name (see `injectbench detectors`), "
+    "detector to evaluate: a registered name (see `benigntwin detectors`), "
     "hf:owner/model[@revision], python:file.py:function, https://host/path "
     "or predictions:file.jsonl"
 )
@@ -100,7 +100,7 @@ def _key_value(values: Sequence[str], what: str) -> dict[str, str]:
     for value in values:
         key, separator, rest = value.partition("=")
         if not separator or not key.strip():
-            raise InjectBenchError(f"invalid {what} {value!r}; expected KEY=VALUE")
+            raise BenignTwinError(f"invalid {what} {value!r}; expected KEY=VALUE")
         result[key.strip()] = rest
     return result
 
@@ -127,15 +127,15 @@ def build_parser() -> argparse.ArgumentParser:
     """Build the argument parser."""
 
     parser = _Parser(
-        prog="injectbench",
+        prog="benigntwin",
         description=(
             "Benchmark prompt-injection detectors and LLM guardrails on matched benign/attack "
             "pairs: attack recall, false-positive rate and pair accuracy, per attack family and "
             "per language, with confidence intervals."
         ),
-        epilog="Documentation: https://github.com/3nesdeniz/injectbench",
+        epilog="Documentation: https://github.com/3nesdeniz/benigntwin",
     )
-    parser.add_argument("--version", action="version", version=f"injectbench {__version__}")
+    parser.add_argument("--version", action="version", version=f"benigntwin {__version__}")
     commands = parser.add_subparsers(dest="command", required=True, metavar="command")
 
     evaluate_parser = commands.add_parser(
@@ -382,7 +382,7 @@ def _run_export(args: argparse.Namespace) -> int:
     dataset = _load(args)
     validation = validate_examples(dataset.examples, generated_ids=dataset.info.generated_ids)
     if not validation.valid:
-        raise InjectBenchError("dataset failed validation: " + "; ".join(validation.errors))
+        raise BenignTwinError("dataset failed validation: " + "; ".join(validation.errors))
     paths = export_promptfoo(
         dataset.examples, args.output_dir, dataset_source=dataset.info.source, split=dataset.info.split
     )
@@ -406,8 +406,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return _COMMANDS[args.command](args)
-    except InjectBenchError as exc:
-        if os.environ.get("INJECTBENCH_DEBUG"):
+    except BenignTwinError as exc:
+        if os.environ.get("BENIGNTWIN_DEBUG"):
             raise
         print(f"error: {exc}", file=sys.stderr)
         return EXIT_ERROR

@@ -15,8 +15,8 @@ A detector is the system under test. It is chosen with `--detector` and one of t
 ## Hugging Face models
 
 ```bash
-pip install "injectbench[hf] @ git+https://github.com/3nesdeniz/injectbench@v0.2.0"
-injectbench evaluate \
+pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v0.2.0"
+benigntwin evaluate \
   --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs \
   --detector hf:protectai/deberta-v3-base-prompt-injection-v2@90c9989b1a34
 ```
@@ -54,7 +54,7 @@ def detect(text: str) -> float:
 ```
 
 ```bash
-injectbench evaluate --dataset pairs.jsonl --detector python:my_guardrail.py:detect --workers 8
+benigntwin evaluate --dataset pairs.jsonl --detector python:my_guardrail.py:detect --workers 8
 ```
 
 The function is called once per input and may return:
@@ -71,7 +71,7 @@ An exception in the function is recorded as a failed row; it does not end the ru
 
 ```bash
 export GUARD_TOKEN=...
-injectbench evaluate --dataset pairs.jsonl \
+benigntwin evaluate --dataset pairs.jsonl \
   --detector https://guard.example.com/v1/classify \
   --http-label-field result.label --http-score-field result.score \
   --http-token-env GUARD_TOKEN --workers 4
@@ -117,7 +117,7 @@ When the system cannot be called from the machine that runs the benchmark, run i
 ```
 
 ```bash
-injectbench evaluate --dataset pairs.jsonl --detector predictions:preds.jsonl
+benigntwin evaluate --dataset pairs.jsonl --detector predictions:preds.jsonl
 ```
 
 Each line needs the row `id` and a `prediction` (or `predicted_label` / `label`), a `score`, or both. If a line has both `prediction` and `label`, `prediction` is used, so a file that also carries the ground truth is never scored against itself. A row without a prediction is a failed row.
@@ -129,7 +129,7 @@ Each line needs the row `id` and a `prediction` (or `predicted_label` / `label`)
 For anything that needs state or batching, subclass `Detector`:
 
 ```python
-from injectbench import Detector, evaluate, load_dataset, render
+from benigntwin import Detector, evaluate, load_dataset, render
 
 class MyGuardrail(Detector):
     name = "my-guardrail-1.4"

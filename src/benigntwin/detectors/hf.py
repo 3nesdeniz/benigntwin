@@ -1,7 +1,7 @@
 """Evaluate a text-classification model from the Hugging Face Hub.
 
 ``hf:owner/model`` or ``hf:owner/model@revision``. Needs ``transformers`` and
-``torch``: ``pip install "injectbench[hf]"``.
+``torch``: ``pip install "benigntwin[hf]"``.
 
 Security defaults:
 
@@ -117,7 +117,7 @@ class HuggingFaceDetector(Detector):
             from transformers import AutoModelForSequenceClassification, AutoTokenizer
         except ImportError as exc:
             raise DetectorError(
-                'Hugging Face detectors need transformers and torch: pip install "injectbench[hf]"'
+                'Hugging Face detectors need transformers and torch: pip install "benigntwin[hf]"'
             ) from exc
 
         self._torch = torch

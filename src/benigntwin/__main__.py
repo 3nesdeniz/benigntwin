@@ -1,4 +1,4 @@
-"""Allow ``python -m injectbench``."""
+"""Allow ``python -m benigntwin``."""
 
 from .cli import main
 

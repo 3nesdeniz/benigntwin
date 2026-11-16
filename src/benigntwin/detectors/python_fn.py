@@ -43,7 +43,7 @@ def _load_module(target: str) -> tuple[ModuleType, str]:
         resolved = path.resolve()
         if not resolved.is_file():
             raise DetectorError(f"Python detector file does not exist: {resolved}")
-        module_name = f"injectbench_user_{resolved.stem}_{abs(hash(str(resolved)))}"
+        module_name = f"benigntwin_user_{resolved.stem}_{abs(hash(str(resolved)))}"
         spec = importlib.util.spec_from_file_location(module_name, resolved)
         if spec is None or spec.loader is None:
             raise DetectorError(f"could not import Python detector: {resolved}")

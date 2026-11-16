@@ -4,11 +4,10 @@ import json
 
 import pytest
 
-from conftest import PAIRED_ROWS, ScriptedDetector, examples_from
-from injectbench.evaluate import evaluate
-from injectbench.gates import check_gates
-from injectbench.models import InjectBenchError
-from injectbench.report import (
+from benigntwin.evaluate import evaluate
+from benigntwin.gates import check_gates
+from benigntwin.models import BenignTwinError
+from benigntwin.report import (
     format_rate,
     predictions_jsonl,
     render,
@@ -17,6 +16,7 @@ from injectbench.report import (
     to_sarif,
     write_text,
 )
+from conftest import PAIRED_ROWS, ScriptedDetector, examples_from
 from test_metrics import ENGLISH_ONLY, SCORES
 
 
@@ -34,7 +34,7 @@ def test_format_rate():
 
 def test_markdown_report(result):
     text = to_markdown(result.report)
-    assert text.startswith("# InjectBench report: `scripted`\n")
+    assert text.startswith("# BenignTwin report: `scripted`\n")
     assert "- **Examples:** 9 (4 attacks, 5 benign)" in text
     assert "- **Matched pairs:** 4" in text
     assert "| Attacks caught (recall) | 75.0% (" in text and " 3/4 |" in text
@@ -92,7 +92,7 @@ def test_sarif_structure(result):
     sarif = json.loads(to_sarif(result.report))
     assert sarif["version"] == "2.1.0"
     run = sarif["runs"][0]
-    assert run["tool"]["driver"]["name"] == "InjectBench"
+    assert run["tool"]["driver"]["name"] == "BenignTwin"
     assert [rule["id"] for rule in run["tool"]["driver"]["rules"]] == [
         "false-positive-rate",
         "recall",
@@ -124,7 +124,7 @@ def test_render_dispatch(result):
     assert render(result.report, "md") == to_markdown(result.report)
     assert render(result.report, "JSON") == to_json(result.report)
     assert render(result.report, "sarif") == to_sarif(result.report)
-    with pytest.raises(InjectBenchError, match="unknown report format 'pdf'"):
+    with pytest.raises(BenignTwinError, match="unknown report format 'pdf'"):
         render(result.report, "pdf")
 
 
@@ -144,5 +144,5 @@ def test_write_text_creates_directories(tmp_path):
     assert not list(target.parent.glob("*.part"))
     blocker = tmp_path / "file"
     blocker.write_text("x", encoding="utf-8")
-    with pytest.raises(InjectBenchError, match="could not write"):
+    with pytest.raises(BenignTwinError, match="could not write"):
         write_text(blocker / "child" / "report.md", "nope")

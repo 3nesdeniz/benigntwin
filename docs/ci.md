@@ -1,6 +1,6 @@
 # Use it as a gate in CI
 
-`injectbench evaluate` can fail a build when a guardrail gets worse. This is how you notice that a new model version, a changed threshold or a prompt update started to block legitimate requests.
+`benigntwin evaluate` can fail a build when a guardrail gets worse. This is how you notice that a new model version, a changed threshold or a prompt update started to block legitimate requests.
 
 ## Gates
 
@@ -14,7 +14,7 @@
 Rates are fractions: `0.05` means 5 %.
 
 ```bash
-injectbench evaluate \
+benigntwin evaluate \
   --dataset tests/guardrail_pairs.jsonl \
   --detector python:app/guardrail.py:detect \
   --max-fpr 0.02 --min-pair-accuracy 0.85
@@ -54,27 +54,27 @@ permissions:
   security-events: write   # only needed for the SARIF upload
 
 jobs:
-  injectbench:
+  benigntwin:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - run: pip install "injectbench @ git+https://github.com/3nesdeniz/injectbench@v0.2.0"
+      - run: pip install "benigntwin @ git+https://github.com/3nesdeniz/benigntwin@v0.2.0"
       - name: Evaluate the guardrail
         run: |
-          injectbench evaluate \
+          benigntwin evaluate \
             --dataset tests/guardrail_pairs.jsonl \
             --detector python:app/guardrail.py:detect \
             --max-fpr 0.02 --min-pair-accuracy 0.85 \
-            --format sarif --output injectbench.sarif \
-            --save-predictions injectbench-predictions.jsonl
+            --format sarif --output benigntwin.sarif \
+            --save-predictions benigntwin-predictions.jsonl
       - name: Show the result in code scanning
         if: always()
         uses: github/codeql-action/upload-sarif@v4
         with:
-          sarif_file: injectbench.sarif
+          sarif_file: benigntwin.sarif
 ```
 
 `--format sarif` writes SARIF 2.1.0. Every gate becomes a result, with level `error` when it failed. Reports never contain input text, only ids and counts, so they are safe to upload even when the dataset holds attack payloads.
@@ -85,4 +85,4 @@ jobs:
 - **Version the dataset with the code**, or pin a Hub dataset to a commit, so a failing build always means the detector changed.
 - **Use matched pairs from your own domain.** The public datasets show whether a detector reads intent in general. Whether it blocks *your* legitimate requests is something only your own benign inputs can show.
 - **Include every language you serve.** A gate on English inputs does not notice a regression in Turkish.
-- **Compare with the previous result, not only with a limit.** `injectbench compare old.json new.json` puts two runs side by side.
+- **Compare with the previous result, not only with a limit.** `benigntwin compare old.json new.json` puts two runs side by side.

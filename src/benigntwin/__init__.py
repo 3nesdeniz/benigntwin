@@ -1,4 +1,4 @@
-"""InjectBench: benchmark prompt-injection detectors and LLM guardrails.
+"""BenignTwin: benchmark prompt-injection detectors and LLM guardrails.
 
 Every attack is evaluated next to a benign twin that shares its topic and
 vocabulary, so a detector gets credit only when it catches the attack *and*
@@ -7,7 +7,7 @@ rate, per attack family and per language breakdowns, and confidence intervals.
 
 Quick start::
 
-    from injectbench import build_detector, evaluate, load_dataset, render
+    from benigntwin import build_detector, evaluate, load_dataset, render
 
     dataset = load_dataset("hf:3nesdeniz/agentic-prompt-injection-boundary-pairs")
     result = evaluate(dataset, build_detector("heuristic"))
@@ -30,10 +30,11 @@ from .detectors import (
 )
 from .evaluate import Evaluation, EvaluationError, evaluate
 from .gates import check_gates
-from .models import Example, InjectBenchError, Prediction, Record
+from .models import BenignTwinError, Example, Prediction, Record
 from .report import render, to_json, to_markdown, to_sarif
 
 __all__ = [
+    "BenignTwinError",
     "Dataset",
     "DatasetError",
     "Detector",
@@ -43,7 +44,6 @@ __all__ = [
     "EvaluationError",
     "Example",
     "FieldMap",
-    "InjectBenchError",
     "Prediction",
     "Record",
     "__version__",

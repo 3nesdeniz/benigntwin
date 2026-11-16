@@ -73,7 +73,7 @@ class HttpDetector(Detector):
         self._headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "User-Agent": f"injectbench/{__version__}",
+            "User-Agent": f"benigntwin/{__version__}",
             **dict(headers or {}),
         }
         self._token_env = token_env

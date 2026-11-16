@@ -21,7 +21,7 @@ from .metrics import (
     slice_metrics,
     threshold_sweep,
 )
-from .models import Example, InjectBenchError, ModelError, Prediction, Record
+from .models import BenignTwinError, Example, ModelError, Prediction, Record
 
 __all__ = ["DEFAULT_SLICES", "SCHEMA_VERSION", "Evaluation", "EvaluationError", "evaluate"]
 
@@ -30,7 +30,7 @@ SCHEMA_VERSION = "2.0"
 DEFAULT_SLICES: tuple[str, ...] = ("language", "attack_family")
 
 
-class EvaluationError(InjectBenchError):
+class EvaluationError(BenignTwinError):
     """An evaluation cannot produce a result that should be trusted."""
 
 
@@ -70,7 +70,7 @@ def evaluate(
     """Evaluate ``detector`` on ``dataset``.
 
     Args:
-        dataset: A loaded :class:`~injectbench.datasets.Dataset` or a plain
+        dataset: A loaded :class:`~benigntwin.datasets.Dataset` or a plain
             sequence of examples.
         detector: The system under test.
         threshold: Score at or above which an input counts as flagged.
@@ -146,7 +146,7 @@ def evaluate(
     resolve_family = family_resolver(records)
     report: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
-        "tool": {"name": "injectbench", "version": __version__},
+        "tool": {"name": "benigntwin", "version": __version__},
         "run": {
             "created_at": _created_at(),
             "threshold": threshold,

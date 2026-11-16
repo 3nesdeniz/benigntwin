@@ -18,10 +18,10 @@ __all__ = ["export_promptfoo"]
 _PROVIDER_SOURCE = '''"""Promptfoo provider for a binary prompt-injection detector endpoint.
 
 Environment:
-    INJECTBENCH_ENDPOINT     URL that accepts a JSON POST (required)
-    INJECTBENCH_TEXT_FIELD   request field for the input text (default: text)
-    INJECTBENCH_LABEL_FIELD  dotted path of the label in the response (default: label)
-    INJECTBENCH_TOKEN        bearer token (optional)
+    BENIGNTWIN_ENDPOINT     URL that accepts a JSON POST (required)
+    BENIGNTWIN_TEXT_FIELD   request field for the input text (default: text)
+    BENIGNTWIN_LABEL_FIELD  dotted path of the label in the response (default: label)
+    BENIGNTWIN_TOKEN        bearer token (optional)
 """
 
 import json
@@ -51,12 +51,12 @@ def _nested(payload, path):
 
 
 def call_api(prompt, options, context):
-    endpoint = os.environ["INJECTBENCH_ENDPOINT"]
+    endpoint = os.environ["BENIGNTWIN_ENDPOINT"]
     if not endpoint.startswith(("http://", "https://")):
-        raise ValueError("INJECTBENCH_ENDPOINT must be an http(s) URL")
-    body = {os.getenv("INJECTBENCH_TEXT_FIELD", "text"): prompt}
+        raise ValueError("BENIGNTWIN_ENDPOINT must be an http(s) URL")
+    body = {os.getenv("BENIGNTWIN_TEXT_FIELD", "text"): prompt}
     headers = {"Content-Type": "application/json", "Accept": "application/json"}
-    token = os.getenv("INJECTBENCH_TOKEN")
+    token = os.getenv("BENIGNTWIN_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
     request = urllib.request.Request(
@@ -67,7 +67,7 @@ def call_api(prompt, options, context):
     )
     with urllib.request.urlopen(request, timeout=30) as response:
         result = json.loads(response.read().decode("utf-8"))
-    return {"output": _normalize(_nested(result, os.getenv("INJECTBENCH_LABEL_FIELD", "label")))}
+    return {"output": _normalize(_nested(result, os.getenv("BENIGNTWIN_LABEL_FIELD", "label")))}
 '''
 
 
@@ -113,7 +113,7 @@ def export_promptfoo(
         "\n".join(
             [
                 "# yaml-language-server: $schema=https://promptfoo.dev/config-schema.json",
-                f"description: {json.dumps(f'InjectBench export: {dataset_source} ({split})')}",
+                f"description: {json.dumps(f'BenignTwin export: {dataset_source} ({split})')}",
                 "prompts:",
                 '  - "{{text}}"',
                 "providers:",
@@ -137,14 +137,14 @@ def export_promptfoo(
                 f"- Examples: {len(examples)}",
                 "",
                 "```bash",
-                "export INJECTBENCH_ENDPOINT=https://your-detector.example/v1/classify",
-                "# optional: export INJECTBENCH_TOKEN=...",
+                "export BENIGNTWIN_ENDPOINT=https://your-detector.example/v1/classify",
+                "# optional: export BENIGNTWIN_TOKEN=...",
                 "npx promptfoo@latest eval -c promptfooconfig.yaml",
                 "npx promptfoo@latest view",
                 "```",
                 "",
                 "The endpoint receives only the input text. It must answer with a JSON label at",
-                "`label`; set `INJECTBENCH_LABEL_FIELD` for a nested path such as `result.label`.",
+                "`label`; set `BENIGNTWIN_LABEL_FIELD` for a nested path such as `result.label`.",
                 "",
             ]
         ),

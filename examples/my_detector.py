@@ -1,4 +1,4 @@
-"""A minimal custom detector for `injectbench evaluate --detector python:examples/my_detector.py:detect`.
+"""A minimal custom detector for `benigntwin evaluate --detector python:examples/my_detector.py:detect`.
 
 Replace the body of `detect` with a call to your own guardrail. The function
 receives the input text and returns the probability that it is an attack.

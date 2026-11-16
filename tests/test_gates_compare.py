@@ -4,11 +4,11 @@ import json
 
 import pytest
 
+from benigntwin.compare import CompareError, compare_reports, load_report, render_comparison
+from benigntwin.evaluate import evaluate
+from benigntwin.gates import EXIT_FPR, EXIT_OK, EXIT_PAIR, EXIT_RECALL, check_gates, exit_code
+from benigntwin.report import to_json
 from conftest import PAIRED_ROWS, ScriptedDetector, examples_from
-from injectbench.compare import CompareError, compare_reports, load_report, render_comparison
-from injectbench.evaluate import evaluate
-from injectbench.gates import EXIT_FPR, EXIT_OK, EXIT_PAIR, EXIT_RECALL, check_gates, exit_code
-from injectbench.report import to_json
 from test_metrics import ENGLISH_ONLY, SCORES
 
 
@@ -92,7 +92,7 @@ def _save(tmp_path, name, report):
 
 
 def test_compare_sorts_and_checks_the_data(tmp_path, write_jsonl, paired_examples):
-    from injectbench.datasets import load_dataset
+    from benigntwin.datasets import load_dataset
 
     dataset = load_dataset(write_jsonl(PAIRED_ROWS))
     weak = evaluate(dataset, ScriptedDetector(ENGLISH_ONLY)).report
@@ -119,7 +119,7 @@ def test_compare_sorts_and_checks_the_data(tmp_path, write_jsonl, paired_example
     assert [row["detector"] for row in by_name["rows"]] == ["english-only", "oracle", "scored"]
 
     text = render_comparison(comparison)
-    assert text.startswith("# InjectBench comparison on `")
+    assert text.startswith("# BenignTwin comparison on `")
     assert "| `oracle` | 100.0% (" in text
     assert "not computed on the same data" not in text
     assert json.loads(render_comparison(comparison, "json"))["sorted_by"] == "pair_accuracy"
@@ -159,7 +159,7 @@ def test_compare_errors(tmp_path, report):
         load_report(broken)
     other = tmp_path / "other.json"
     other.write_text('{"hello": "world"}', encoding="utf-8")
-    with pytest.raises(CompareError, match="not an InjectBench report"):
+    with pytest.raises(CompareError, match="not an BenignTwin report"):
         load_report(other)
     old = dict(report, schema_version="1.0")
     with pytest.raises(CompareError, match=r"schema '1\.0' is not supported"):

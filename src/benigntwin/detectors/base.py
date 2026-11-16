@@ -4,7 +4,7 @@ A detector decides whether an input is an attack. To measure your own
 guardrail, subclass :class:`Detector` and implement :meth:`Detector.predict`,
 :meth:`Detector.score`, or both::
 
-    from injectbench import Detector
+    from benigntwin import Detector
 
     class MyGuardrail(Detector):
         name = "my-guardrail"
@@ -24,12 +24,12 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import replace
 from typing import Any
 
-from ..models import Example, InjectBenchError, Prediction, normalize_label
+from ..models import BenignTwinError, Example, Prediction, normalize_label
 
 __all__ = ["Detector", "DetectorError", "run_per_example"]
 
 
-class DetectorError(InjectBenchError):
+class DetectorError(BenignTwinError):
     """A detector cannot be created or configured."""
 
 
@@ -68,7 +68,7 @@ def run_per_example(
 
 
 class Detector:
-    """Base class for everything InjectBench can evaluate."""
+    """Base class for everything BenignTwin can evaluate."""
 
     #: Shown in reports. Give every detector a distinct, stable name.
     name: str = "detector"

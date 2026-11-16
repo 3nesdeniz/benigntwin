@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from .metrics import NO_VALUE
-from .models import InjectBenchError, Record
+from .models import BenignTwinError, Record
 
 __all__ = [
     "FORMATS",
@@ -26,10 +26,10 @@ __all__ = [
 ]
 
 FORMATS: tuple[str, ...] = ("markdown", "json", "sarif")
-_HOMEPAGE = "https://github.com/3nesdeniz/injectbench"
+_HOMEPAGE = "https://github.com/3nesdeniz/benigntwin"
 
 
-class ReportError(InjectBenchError):
+class ReportError(BenignTwinError):
     """A report cannot be rendered or written."""
 
 
@@ -104,7 +104,7 @@ def _detector_lines(report: Mapping[str, Any]) -> list[str]:
         + (f" ({coverage['failed']} failed)" if coverage["failed"] else "")
     )
     lines.append(
-        f"- **Run:** {run['created_at']}, InjectBench {report['tool']['version']}, "
+        f"- **Run:** {run['created_at']}, BenignTwin {report['tool']['version']}, "
         f"{run['confidence'] * 100:g}% Wilson confidence intervals"
     )
     return lines
@@ -301,7 +301,7 @@ def to_markdown(report: Mapping[str, Any]) -> str:
     """Render a human-readable Markdown report."""
 
     lines = [
-        f"# InjectBench report: `{report['detector']['name']}`",
+        f"# BenignTwin report: `{report['detector']['name']}`",
         "",
         *_dataset_lines(report),
         *_detector_lines(report),
@@ -421,7 +421,7 @@ def to_sarif(report: Mapping[str, Any]) -> str:
             {
                 "tool": {
                     "driver": {
-                        "name": "InjectBench",
+                        "name": "BenignTwin",
                         "version": report["tool"]["version"],
                         "informationUri": _HOMEPAGE,
                         "rules": rules,

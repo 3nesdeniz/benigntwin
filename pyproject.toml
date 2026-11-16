@@ -3,7 +3,7 @@ requires = ["hatchling>=1.27"]
 build-backend = "hatchling.build"
 
 [project]
-name = "injectbench"
+name = "benigntwin"
 dynamic = ["version"]
 description = "Benchmark prompt-injection detectors and LLM guardrails on matched benign/attack pairs: attack recall, false-positive rate and pair accuracy, per attack family and per language."
 readme = "README.md"
@@ -55,20 +55,20 @@ hub = ["pyarrow>=14"]
 dev = ["pytest>=8", "ruff>=0.8", "mypy>=1.11", "pyarrow>=14"]
 
 [project.urls]
-Homepage = "https://github.com/3nesdeniz/injectbench"
-Documentation = "https://github.com/3nesdeniz/injectbench/tree/main/docs"
-Repository = "https://github.com/3nesdeniz/injectbench"
-Issues = "https://github.com/3nesdeniz/injectbench/issues"
-Changelog = "https://github.com/3nesdeniz/injectbench/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/3nesdeniz/benigntwin"
+Documentation = "https://github.com/3nesdeniz/benigntwin/tree/main/docs"
+Repository = "https://github.com/3nesdeniz/benigntwin"
+Issues = "https://github.com/3nesdeniz/benigntwin/issues"
+Changelog = "https://github.com/3nesdeniz/benigntwin/blob/main/CHANGELOG.md"
 
 [project.scripts]
-injectbench = "injectbench.cli:main"
+benigntwin = "benigntwin.cli:main"
 
 [tool.hatch.version]
-path = "src/injectbench/_version.py"
+path = "src/benigntwin/_version.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/injectbench"]
+packages = ["src/benigntwin"]
 
 [tool.hatch.build.targets.sdist]
 include = [

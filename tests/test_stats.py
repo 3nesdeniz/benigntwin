@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from injectbench.stats import mcnemar_exact, percentile, roc_auc, wilson_interval
+from benigntwin.stats import mcnemar_exact, percentile, roc_auc, wilson_interval
 
 
 def test_wilson_matches_published_values():

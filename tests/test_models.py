@@ -4,7 +4,7 @@ import math
 
 import pytest
 
-from injectbench.models import (
+from benigntwin.models import (
     Example,
     LabelError,
     ModelError,

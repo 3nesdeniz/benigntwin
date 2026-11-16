@@ -2,10 +2,10 @@
 
 ## How do I measure the false-positive rate of a prompt-injection detector?
 
-Run the detector on benign inputs and count how many it flags. The number depends on which benign inputs you use, so use two kinds: ordinary requests from your application, and legitimate requests that resemble attacks (benign twins). InjectBench reports the rate with a confidence interval and the counts behind it:
+Run the detector on benign inputs and count how many it flags. The number depends on which benign inputs you use, so use two kinds: ordinary requests from your application, and legitimate requests that resemble attacks (benign twins). BenignTwin reports the rate with a confidence interval and the counts behind it:
 
 ```bash
-injectbench evaluate --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs \
+benigntwin evaluate --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs \
   --detector hf:protectai/deberta-v3-base-prompt-injection-v2
 ```
 
@@ -51,11 +51,11 @@ The one you run in production. The default is `0.5`. The report also shows the b
 
 ## Why is a rate shown as `n/a`?
 
-Its denominator is zero: for example, the false-positive rate of a dataset without benign rows. InjectBench does not print `0` for something it could not measure.
+Its denominator is zero: for example, the false-positive rate of a dataset without benign rows. BenignTwin does not print `0` for something it could not measure.
 
 ## My model's labels are `LABEL_0` and `LABEL_1`. Which one is the attack?
 
-InjectBench assumes `LABEL_1` and says so in the report. If your model is the other way round, pass `--positive-label LABEL_0`.
+BenignTwin assumes `LABEL_1` and says so in the report. If your model is the other way round, pass `--positive-label LABEL_0`.
 
 ## Why does it refuse to load some models?
 
@@ -67,7 +67,7 @@ No. It is evidence about one detector on one dataset. Attackers adapt, and a det
 
 ## How is this different from garak, promptfoo, PyRIT or PINT?
 
-garak, promptfoo and PyRIT test what a model or an application does under attack. InjectBench tests the detector in front of it. PINT also benchmarks detectors and includes hard negatives, but its data is not public and it reports one balanced-accuracy score. See [related work](related-work.md).
+garak, promptfoo and PyRIT test what a model or an application does under attack. BenignTwin tests the detector in front of it. PINT also benchmarks detectors and includes hard negatives, but its data is not public and it reports one balanced-accuracy score. See [related work](related-work.md).
 
 ## How do I cite it?
 

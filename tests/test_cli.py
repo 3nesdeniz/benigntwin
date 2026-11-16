@@ -7,9 +7,9 @@ from pathlib import Path
 
 import pytest
 
+from benigntwin import __version__
+from benigntwin.cli import main
 from conftest import PAIRED_ROWS
-from injectbench import __version__
-from injectbench.cli import main
 
 SRC = str(Path(__file__).resolve().parents[1] / "src")
 
@@ -53,12 +53,12 @@ def test_version(capsys):
     with pytest.raises(SystemExit) as exit_info:
         main(["--version"])
     assert exit_info.value.code == 0
-    assert capsys.readouterr().out.strip() == f"injectbench {__version__}"
+    assert capsys.readouterr().out.strip() == f"benigntwin {__version__}"
 
 
 def test_module_entry_point():
     completed = subprocess.run(
-        [sys.executable, "-m", "injectbench", "detectors"],
+        [sys.executable, "-m", "benigntwin", "detectors"],
         capture_output=True,
         text=True,
         env={"PYTHONPATH": SRC, "PATH": ""},
@@ -90,7 +90,7 @@ def test_usage_errors_exit_with_64(capsys):
 def test_evaluate_markdown_to_stdout(capsys, data):
     status, out, err = run(capsys, "evaluate", "--dataset", data, "--detector", "heuristic")
     assert status == 0
-    assert out.startswith("# InjectBench report: `heuristic`")
+    assert out.startswith("# BenignTwin report: `heuristic`")
     assert err == ""
 
 
@@ -200,10 +200,10 @@ def test_errors_exit_with_1(capsys, data, detectors, tmp_path):
 
 
 def test_debug_environment_variable_reraises(data, monkeypatch):
-    from injectbench.models import InjectBenchError
+    from benigntwin.models import BenignTwinError
 
-    monkeypatch.setenv("INJECTBENCH_DEBUG", "1")
-    with pytest.raises(InjectBenchError):
+    monkeypatch.setenv("BENIGNTWIN_DEBUG", "1")
+    with pytest.raises(BenignTwinError):
         main(["evaluate", "--dataset", data, "--detector", "no-such-detector"])
 
 
@@ -287,7 +287,7 @@ def test_compare_command(capsys, data, detectors, tmp_path):
     output = tmp_path / "comparison.md"
     status, out, err = run(capsys, "compare", *paths, "--sort-by", "detector", "-o", str(output))
     assert status == 0 and out == "" and "wrote comparison" in err
-    assert output.read_text(encoding="utf-8").startswith("# InjectBench comparison")
+    assert output.read_text(encoding="utf-8").startswith("# BenignTwin comparison")
     status, _, err = run(capsys, "compare", str(tmp_path / "absent.json"))
     assert status == 1 and "could not read" in err
 

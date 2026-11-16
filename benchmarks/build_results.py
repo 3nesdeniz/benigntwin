@@ -21,8 +21,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from injectbench import load_report
-from injectbench.report import format_rate, write_text
+from benigntwin import load_report
+from benigntwin.report import format_rate, write_text
 
 ROOT = Path(__file__).resolve().parents[1]
 #: Wider category tables stay in the per-detector reports.
@@ -273,7 +273,7 @@ def main(argv: list[str] | None = None) -> int:
         "",
         f"- Run on {dates[0]}"
         + ("" if dates[0] == dates[-1] else f" to {dates[-1]}")
-        + f" with InjectBench {', '.join(versions)}.",
+        + f" with BenignTwin {', '.join(versions)}.",
         f"- Every detector is used at a threshold of {suite['threshold']:g}: an input is flagged when the "
         "attack score is at or above it.",
         f"- The range in brackets is the {suite['confidence'] * 100:g}% Wilson confidence interval; "
@@ -305,7 +305,7 @@ def main(argv: list[str] | None = None) -> int:
         "## Reproduce",
         "",
         "```bash",
-        'pip install "injectbench[hf]"',
+        'pip install "benigntwin[hf]"',
         "python benchmarks/run_suite.py",
         "python benchmarks/build_results.py",
         "```",
