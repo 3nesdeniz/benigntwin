@@ -2,6 +2,16 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the versions follow [semantic versioning](https://semver.org/).
 
+## [1.0.1] - 2026-11-16
+
+### Changed
+
+- The package is on PyPI: `pip install benigntwin`. The documentation uses that command.
+
+### Fixed
+
+- The release workflow reads the package version correctly and can publish an existing tag by hand.
+
 ## [1.0.0] - 2026-11-16
 
 **The project is renamed from InjectBench to BenignTwin** (package, import name and command: `benigntwin`). This release also rebuilds the tool and merges in [llm-security-testbench](https://github.com/3nesdeniz/llm-security-testbench), which did the same job. See [docs/migration.md](docs/migration.md) if you used either.
@@ -45,7 +55,8 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 First release: regex and heuristic baselines, recall and false-positive rate, paired boundary accuracy, per-family and per-language tables, Markdown, JSON and SARIF reports.
 
-[1.0.0]: https://github.com/3nesdeniz/benigntwin/compare/v0.1.0...HEAD
+[1.0.1]: https://github.com/3nesdeniz/benigntwin/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/3nesdeniz/benigntwin/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/3nesdeniz/benigntwin/releases/tag/v0.1.0
 
 Version 0.1.0 was released under the name InjectBench.
