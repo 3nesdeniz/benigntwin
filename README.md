@@ -183,7 +183,7 @@ Use **Cite this repository** on GitHub, or:
   author  = {Deniz, Enes},
   title   = {BenignTwin: benchmarking prompt-injection detectors on matched benign/attack pairs},
   year    = {2026},
-  version = {1.0.2},
+  version = {1.0.3},
   url     = {https://github.com/3nesdeniz/benigntwin}
 }
 ```

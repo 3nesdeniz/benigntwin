@@ -2,6 +2,12 @@
 
 All notable changes are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the versions follow [semantic versioning](https://semver.org/).
 
+## [1.0.3] - 2026-11-16
+
+### Changed
+
+- Releases are archived on Zenodo from this version on, so each one has a DOI. No change to the tool.
+
 ## [1.0.2] - 2026-11-16
 
 ### Changed
@@ -61,6 +67,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 First release: regex and heuristic baselines, recall and false-positive rate, paired boundary accuracy, per-family and per-language tables, Markdown, JSON and SARIF reports.
 
+[1.0.3]: https://github.com/3nesdeniz/benigntwin/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/3nesdeniz/benigntwin/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/3nesdeniz/benigntwin/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/3nesdeniz/benigntwin/compare/v0.1.0...v1.0.0
