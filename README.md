@@ -33,7 +33,7 @@ A detector that reacts to wording flags both or neither. BenignTwin scores the p
 ## Install
 
 ```bash
-pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v0.2.0"
+pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v1.0.0"
 ```
 
 Leave out `[hf]` if you do not evaluate Hugging Face models; the core needs only Python 3.10 or newer.
@@ -155,7 +155,7 @@ Use **Cite this repository** on GitHub, or:
   author  = {Deniz, Enes},
   title   = {BenignTwin: benchmarking prompt-injection detectors on matched benign/attack pairs},
   year    = {2026},
-  version = {0.2.0},
+  version = {1.0.0},
   url     = {https://github.com/3nesdeniz/benigntwin}
 }
 ```

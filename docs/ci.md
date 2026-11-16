@@ -61,7 +61,7 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
-      - run: pip install "benigntwin @ git+https://github.com/3nesdeniz/benigntwin@v0.2.0"
+      - run: pip install "benigntwin @ git+https://github.com/3nesdeniz/benigntwin@v1.0.0"
       - name: Evaluate the guardrail
         run: |
           benigntwin evaluate \

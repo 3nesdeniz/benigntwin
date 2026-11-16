@@ -10,7 +10,7 @@ Reports are acknowledged as soon as practical and fixed before they are disclose
 
 ## Supported versions
 
-Until version 1.0, only the latest release receives security fixes.
+Security fixes are made for the latest 1.x release.
 
 ## What the tool does with your data and code
 

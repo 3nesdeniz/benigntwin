@@ -15,7 +15,7 @@ A detector is the system under test. It is chosen with `--detector` and one of t
 ## Hugging Face models
 
 ```bash
-pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v0.2.0"
+pip install "benigntwin[hf] @ git+https://github.com/3nesdeniz/benigntwin@v1.0.0"
 benigntwin evaluate \
   --dataset hf:3nesdeniz/agentic-prompt-injection-boundary-pairs \
   --detector hf:protectai/deberta-v3-base-prompt-injection-v2@90c9989b1a34

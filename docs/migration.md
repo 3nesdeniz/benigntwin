@@ -1,10 +1,10 @@
-# Migrating to 0.2
+# Migrating to 1.0
 
-Version 0.2 renames the project from **InjectBench** to **BenignTwin**. The package, the import name and the command are now `benigntwin`. The old name was shared with a 2024 thesis and with a module shipped by an unrelated PyPI package, which made the tool hard to find and could lead to file conflicts.
+Version 1.0 renames the project from **InjectBench** to **BenignTwin**. The package, the import name and the command are now `benigntwin`. The old name was shared with a 2024 thesis and with a module shipped by an unrelated PyPI package, which made the tool hard to find and could lead to file conflicts.
 
 ## From InjectBench 0.1.0
 
-| InjectBench 0.1.0 | BenignTwin 0.2 |
+| InjectBench 0.1.0 | BenignTwin 1.0 |
 | --- | --- |
 | `injectbench` (command and import) | `benigntwin` |
 | `from injectbench import load` | `from benigntwin import load_dataset` |
@@ -29,9 +29,9 @@ The options of 0.1.0 still work under the new command: `benigntwin evaluate --da
 
 ## From llm-security-testbench
 
-BenignTwin 0.2 contains what the testbench did. The command is `benigntwin` instead of `llmst`.
+BenignTwin 1.0 contains what the testbench did. The command is `benigntwin` instead of `llmst`.
 
-| llm-security-testbench | BenignTwin 0.2 |
+| llm-security-testbench | BenignTwin 1.0 |
 | --- | --- |
 | `llmst validate --dataset ...` | `benigntwin validate --dataset ...` |
 | `--dataset hf://owner/name@rev` | unchanged (`hf:owner/name@rev` also works) |
