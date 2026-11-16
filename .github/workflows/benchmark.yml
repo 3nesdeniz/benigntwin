@@ -1,8 +1,12 @@
 # Runs the pinned benchmark suite (benchmarks/suite.json) and uploads the reports.
-# Started by hand. It has no write access: the results are reviewed and committed separately.
+# Started by hand or by pushing to the run-benchmark branch. It has no write access: the results are reviewed and committed separately.
 name: Benchmark
 
 on:
+  # A push to the branch "run-benchmark" starts a full run; this also works
+  # before the workflow exists on the default branch.
+  push:
+    branches: [run-benchmark]
   workflow_dispatch:
     inputs:
       detectors:
