@@ -36,6 +36,8 @@ jobs:
 
   publish:
     needs: build
+    # Set the repository variable PYPI_PUBLISH to "true" once the trusted publisher exists on PyPI.
+    if: vars.PYPI_PUBLISH == 'true'
     runs-on: ubuntu-24.04
     environment: pypi
     permissions:
